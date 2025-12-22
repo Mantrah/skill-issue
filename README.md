@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Skill Issue
 
-## Getting Started
+Site satirique dédié aux jeux vidéo, inspiré du Gorafi et de NordPresse.
 
-First, run the development server:
+## Stack technique
+
+- **Frontend**: Next.js 14 (App Router)
+- **Styling**: Tailwind CSS
+- **Database**: Supabase (PostgreSQL)
+- **Auth**: Supabase Auth (Google/Meta OAuth)
+- **Hébergement**: Vercel
+
+## Développement
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrir [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+skill-issue/
+├── src/
+│   └── app/           # Pages Next.js (App Router)
+├── content/           # Articles satiriques (markdown)
+├── .claude/
+│   └── agents/        # Agents de génération de contenu
+│       ├── content-generator.md
+│       └── content-tuner.md
+└── public/            # Assets statiques
+```
 
-## Learn More
+## Fonctionnalités prévues
 
-To learn more about Next.js, take a look at the following resources:
+### v1
+- [ ] Page d'accueil avec liste d'articles
+- [ ] Page article individuelle
+- [ ] SEO optimisé
+- [ ] Auth Google/Meta
+- [ ] Commentaires
+- [ ] Multilingue (EN/FR)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Admin
+- [ ] Dashboard admin
+- [ ] CRUD articles
+- [ ] Modération commentaires
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Déploiement
 
-## Deploy on Vercel
+```bash
+vercel
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Licence
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
