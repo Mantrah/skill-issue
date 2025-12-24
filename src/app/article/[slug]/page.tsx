@@ -1,9 +1,26 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { getArticleBySlug, getAllSlugs, categoryConfig } from "@/lib/articles";
 import Markdown from "react-markdown";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
+import ShareButtons from "@/components/ShareButtons";
+import LikeButton from "@/components/LikeButton";
+import CommentSection from "@/components/CommentSection";
 import type { Metadata } from "next";
+
+function formatDate(dateStr: string): string {
+  const date = new Date(dateStr)
+  return date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })
+}
+
+// Likes mockés par article (sera remplacé par la DB)
+const articleLikes: Record<string, number> = {
+  'ubisoft-ac-shadows': 127,
+  'ea-fc25-microtransactions': 89,
+  'nintendo-fuite-cartouches': 234,
+  'metroid-prime-4-attente': 456,
+}
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -50,27 +67,51 @@ export default async function ArticlePage({ params }: PageProps) {
 
       <article>
         <header className="mb-8">
-          <ImagePlaceholder
-            category={article.category}
-            className="w-full aspect-[3/1] rounded-xl mb-6"
-          />
+          {article.image ? (
+            <div className="relative w-full aspect-[3/1] rounded-xl overflow-hidden mb-6">
+              <Image
+                src={article.image}
+                alt={article.title}
+                fill
+                className="object-cover"
+              />
+            </div>
+          ) : (
+            <ImagePlaceholder
+              category={article.category}
+              className="w-full aspect-[3/1] rounded-xl mb-6"
+            />
+          )}
 
-          <span
-            className="inline-block px-2.5 py-1 text-xs font-semibold rounded-full mb-4"
-            style={{ backgroundColor: config.color, color: '#fff' }}
-          >
-            {config.label}
-          </span>
+          <div className="flex items-center gap-3 mb-4">
+            <span
+              className="inline-block px-2.5 py-1 text-xs font-semibold rounded-full"
+              style={{ backgroundColor: config.color, color: '#fff' }}
+            >
+              {config.label}
+            </span>
+            <span className="text-sm text-muted">{formatDate(article.date)}</span>
+          </div>
 
-          <h1 className="text-2xl md:text-3xl font-bold leading-tight text-foreground">
+          <h1 className="text-2xl md:text-3xl font-bold leading-tight text-foreground mb-4">
             {article.title}
           </h1>
+
+          <div className="flex flex-wrap items-center gap-4">
+            <LikeButton initialLikes={articleLikes[slug] || 0} />
+            <ShareButtons
+              url={`https://skillissue.fr/article/${slug}`}
+              title={article.title}
+            />
+          </div>
         </header>
 
         <div className="prose prose-zinc dark:prose-invert max-w-none prose-p:text-foreground/90 prose-strong:text-foreground prose-a:text-accent hover:prose-a:text-accent-hover">
           <Markdown>{article.content}</Markdown>
         </div>
       </article>
+
+      <CommentSection slug={slug} />
     </div>
   );
 }

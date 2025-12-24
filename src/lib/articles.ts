@@ -1,7 +1,8 @@
 import fs from 'fs'
 import path from 'path'
+import { type Category } from './categories'
 
-export type Category = 'nintendo' | 'ea' | 'ubisoft' | 'sony' | 'microsoft' | 'general'
+export { type Category, categoryConfig, allCategories } from './categories'
 
 export interface Article {
   slug: string
@@ -9,18 +10,31 @@ export interface Article {
   excerpt: string
   content: string
   category: Category
+  image?: string
+  date: string
 }
 
-export const categoryConfig: Record<Category, { label: string; color: string; bgLight: string; icon: string }> = {
-  nintendo: { label: 'Nintendo', color: '#e11d48', bgLight: '#fef2f2', icon: '🎮' },
-  ea: { label: 'EA Sports', color: '#0ea5e9', bgLight: '#f0f9ff', icon: '⚽' },
-  ubisoft: { label: 'Ubisoft', color: '#8b5cf6', bgLight: '#faf5ff', icon: '🗡️' },
-  sony: { label: 'PlayStation', color: '#2563eb', bgLight: '#eff6ff', icon: '🎯' },
-  microsoft: { label: 'Xbox', color: '#22c55e', bgLight: '#f0fdf4', icon: '🎲' },
-  general: { label: 'Gaming', color: '#71717a', bgLight: '#f4f4f5', icon: '👾' },
+// Dates mockées (sera remplacé par la DB plus tard)
+const articleDates: Record<string, string> = {
+  'ubisoft-ac-shadows': '2025-12-24',
+  'ea-fc25-microtransactions': '2025-12-23',
+  'nintendo-fuite-cartouches': '2025-12-22',
+  'metroid-prime-4-attente': '2025-12-21',
 }
 
 const contentDirectory = path.join(process.cwd(), 'content')
+const imagesDirectory = path.join(process.cwd(), 'public', 'images')
+
+function findImage(slug: string): string | undefined {
+  const extensions = ['.png', '.jpg', '.jpeg', '.webp']
+  for (const ext of extensions) {
+    const imagePath = path.join(imagesDirectory, slug + ext)
+    if (fs.existsSync(imagePath)) {
+      return `/images/${slug}${ext}`
+    }
+  }
+  return undefined
+}
 
 function detectCategory(slug: string, content: string): Category {
   const text = (slug + ' ' + content).toLowerCase()
@@ -75,9 +89,12 @@ export function getAllArticles(): Article[] {
       const fullPath = path.join(contentDirectory, fileName)
       const fileContent = fs.readFileSync(fullPath, 'utf8')
       const { title, excerpt, content, category } = parseArticle(slug, fileContent)
+      const image = findImage(slug)
+      const date = articleDates[slug] || '2025-01-01'
 
-      return { slug, title, excerpt, content, category }
+      return { slug, title, excerpt, content, category, image, date }
     })
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
   return articles
 }
@@ -91,8 +108,10 @@ export function getArticleBySlug(slug: string): Article | null {
 
   const fileContent = fs.readFileSync(fullPath, 'utf8')
   const { title, excerpt, content, category } = parseArticle(slug, fileContent)
+  const image = findImage(slug)
+  const date = articleDates[slug] || '2025-01-01'
 
-  return { slug, title, excerpt, content, category }
+  return { slug, title, excerpt, content, category, image, date }
 }
 
 export function getAllSlugs(): string[] {

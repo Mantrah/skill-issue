@@ -1,4 +1,4 @@
-import { categoryConfig, type Category } from '@/lib/articles'
+import { categoryConfig, type Category } from '@/lib/categories'
 
 interface ImagePlaceholderProps {
   category: Category

@@ -4,7 +4,17 @@
       "Bash(npm install:*)",
       "Bash(mkdir:*)",
       "Bash(npm run dev:*)",
-      "Bash(git remote add:*)"
+      "Bash(git remote add:*)",
+      "Bash(git push:*)",
+      "Bash(Get-ChildItem \"C:\\\\Users\\\\phazo\\\\Downloads\\\\*.png\")",
+      "Bash(Sort-Object LastWriteTime -Descending)",
+      "Bash(Select-Object -First 1)",
+      "Bash(ForEach-Object { $_FullName })",
+      "WebFetch(domain:support.claude.com)",
+      "Bash(taskkill //F //PID 21516)",
+      "Bash(taskkill:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nfeat: Ajout filtres, commentaires, likes et partage\n\n- Filtres par catégorie sur la homepage\n- Section commentaires avec likes \\(mockés\\)\n- Bouton like sur les articles\n- Boutons de partage \\(X, Facebook, LinkedIn, copier lien\\)\n- Date de publication sur les articles\n- Tri des articles par date \\(plus récent en premier\\)\n- Images générées pour Metroid, Switch 2, AC Shadows\n- Favicon manette rouge\n- Suppression pattern manettes du background\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
     ]
   }
 }
