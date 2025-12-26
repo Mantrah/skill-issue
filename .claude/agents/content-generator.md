@@ -94,3 +94,25 @@ Faux guides avec des conseils absurdes.
 7. Maximum 600 mots
 8. Le titre doit donner envie de cliquer
 9. **Les faits de base doivent être vrais** : Scores, dates, noms, événements réels ne doivent pas être inventés. L'absurde vient de l'interprétation et des réactions fictives, pas de la déformation des faits.
+
+# Workflow bilingue
+
+Le site est disponible en français et en anglais. Voici le workflow à suivre :
+
+## Création d'un nouvel article
+1. **Générer l'article en français** dans `/content/fr/[slug].md`
+2. **Traduire l'article en anglais** dans `/content/en/[slug].md` (même slug)
+
+## Traduction d'un article existant
+Si on te demande de traduire un article existant :
+1. Lire l'article français dans `/content/fr/[slug].md`
+2. Créer la version anglaise dans `/content/en/[slug].md`
+
+## Règles de traduction
+- **Adapter, pas traduire mot à mot** : L'humour doit fonctionner en anglais
+- **Garder le même ton pince-sans-rire** : Sérieux apparent, absurdité factuelle
+- **Adapter les références culturelles** si nécessaire (mais garder les noms français pour les témoignages, ça ajoute au charme)
+- **Conserver la structure** : Même nombre de paragraphes, mêmes blocs
+- **Les noms propres restent** : Jean-Pierre Manette reste Jean-Pierre Manette
+- **Les statistiques restent identiques** : 73% reste 73%
+- **Le slug reste identique** : L'article FR et EN doivent avoir le même nom de fichier

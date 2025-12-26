@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { categoryConfig, type Category } from '@/lib/categories'
+import { formatDateLocale, type Locale } from '@/lib/i18n'
 import ImagePlaceholder from './ImagePlaceholder'
 
 interface Article {
@@ -13,17 +14,13 @@ interface Article {
   date: string
 }
 
-function formatDate(dateStr: string): string {
-  const date = new Date(dateStr)
-  return date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })
-}
-
 interface ArticleCardProps {
   article: Article
   featured?: boolean
+  locale?: Locale
 }
 
-export default function ArticleCard({ article, featured = false }: ArticleCardProps) {
+export default function ArticleCard({ article, featured = false, locale = 'fr' }: ArticleCardProps) {
   const config = categoryConfig[article.category]
 
   if (featured) {
@@ -53,7 +50,7 @@ export default function ArticleCard({ article, featured = false }: ArticleCardPr
               >
                 {config.label}
               </span>
-              <span className="text-xs text-muted">{formatDate(article.date)}</span>
+              <span className="text-xs text-muted">{formatDateLocale(article.date, locale)}</span>
             </div>
             <h2 className="text-xl md:text-2xl font-bold text-foreground leading-tight group-hover:text-accent transition-colors">
               {article.title}
@@ -93,7 +90,7 @@ export default function ArticleCard({ article, featured = false }: ArticleCardPr
             >
               {config.label}
             </span>
-            <span className="text-xs text-muted">{formatDate(article.date)}</span>
+            <span className="text-xs text-muted">{formatDateLocale(article.date, locale)}</span>
           </div>
           <h2 className="text-base font-semibold leading-snug text-foreground group-hover:text-accent transition-colors line-clamp-2">
             {article.title}

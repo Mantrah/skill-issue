@@ -1,4 +1,8 @@
+'use client'
+
 import Link from 'next/link'
+import { useLanguage } from '@/contexts/LanguageContext'
+import LanguageToggle from './LanguageToggle'
 
 function GamepadIcon() {
   return (
@@ -21,8 +25,10 @@ function GamepadIcon() {
 }
 
 export default function Header() {
+  const { t } = useLanguage()
+
   return (
-    <header className="border-b border-card-border bg-card">
+    <header className="border-b border-card-border bg-header-bg">
       <div className="max-w-5xl mx-auto px-4 py-5">
         <div className="flex items-center justify-between">
           <Link href="/" className="group flex items-center gap-3">
@@ -33,19 +39,22 @@ export default function Header() {
                 <span className="text-foreground"> ISSUE</span>
               </h1>
               <p className="text-xs text-muted mt-0.5">
-                L'actu gaming qu'on mérite (ou pas)
+                {t.tagline}
               </p>
             </div>
           </Link>
 
-          <nav className="hidden sm:flex items-center gap-6 text-sm font-medium">
-            <Link href="/" className="text-muted hover:text-foreground transition-colors">
-              Articles
-            </Link>
-            <span className="text-muted/50 cursor-not-allowed">
-              À propos
-            </span>
-          </nav>
+          <div className="flex items-center gap-4">
+            <nav className="hidden sm:flex items-center gap-6 text-sm font-medium">
+              <Link href="/" className="text-muted hover:text-foreground transition-colors">
+                {t.articles}
+              </Link>
+              <span className="text-muted/50 cursor-not-allowed">
+                {t.about}
+              </span>
+            </nav>
+            <LanguageToggle />
+          </div>
         </div>
       </div>
     </header>

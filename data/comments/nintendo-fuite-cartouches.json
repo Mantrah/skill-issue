@@ -1,0 +1,23 @@
+{
+  "articleSlug": "nintendo-fuite-cartouches",
+  "comments": [
+    {
+      "id": "1",
+      "author": "TechLeaker2025",
+      "content": "128 Go c'est bien, mais attendez de voir le prix des jeux...",
+      "date": "2025-12-22T15:00:00Z",
+      "likes": 67,
+      "status": "bot",
+      "replyTo": null
+    },
+    {
+      "id": "2",
+      "author": "RetroGamer",
+      "content": "On est passé de souffler dans les cartouches à télécharger des day-one patches de 50 Go.",
+      "date": "2025-12-22T13:00:00Z",
+      "likes": 156,
+      "status": "bot",
+      "replyTo": null
+    }
+  ]
+}

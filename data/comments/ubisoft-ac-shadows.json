@@ -1,0 +1,23 @@
+{
+  "articleSlug": "ubisoft-ac-shadows",
+  "comments": [
+    {
+      "id": "1",
+      "author": "AssassinVeteran",
+      "content": "Après tous ces reports, le jeu a intérêt à être parfait. Genre, vraiment parfait.",
+      "date": "2025-12-24T10:00:00Z",
+      "likes": 45,
+      "status": "bot",
+      "replyTo": null
+    },
+    {
+      "id": "2",
+      "author": "JapanHistoryNerd",
+      "content": "J'espère qu'ils ont bien fait leurs recherches historiques cette fois. Les samouraïs méritent mieux.",
+      "date": "2025-12-24T04:00:00Z",
+      "likes": 78,
+      "status": "bot",
+      "replyTo": null
+    }
+  ]
+}

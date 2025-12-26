@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { categoryConfig, allCategories, type Category } from '@/lib/categories'
+import { useLanguage } from '@/contexts/LanguageContext'
 import ArticleCard from './ArticleCard'
 
 interface Article {
@@ -15,11 +16,16 @@ interface Article {
 }
 
 interface CategoryFilterProps {
-  articles: Article[]
+  articlesFr: Article[]
+  articlesEn: Article[]
 }
 
-export default function CategoryFilter({ articles }: CategoryFilterProps) {
+export default function CategoryFilter({ articlesFr, articlesEn }: CategoryFilterProps) {
+  const { locale, t } = useLanguage()
   const [activeCategory, setActiveCategory] = useState<Category | 'all'>('all')
+
+  // Select articles based on locale, fallback to French if English not available
+  const articles = locale === 'en' && articlesEn.length > 0 ? articlesEn : articlesFr
 
   // Catégories présentes dans les articles
   const availableCategories = allCategories.filter(cat =>
@@ -44,11 +50,12 @@ export default function CategoryFilter({ articles }: CategoryFilterProps) {
               : 'bg-card border border-card-border text-foreground hover:border-accent/50'
           }`}
         >
-          Tous
+          {t.allCategories}
         </button>
         {availableCategories.map(cat => {
           const config = categoryConfig[cat]
           const isActive = activeCategory === cat
+          const label = t.categories[cat as keyof typeof t.categories] || config.label
           return (
             <button
               key={cat}
@@ -60,7 +67,7 @@ export default function CategoryFilter({ articles }: CategoryFilterProps) {
               }`}
               style={isActive ? { backgroundColor: config.color } : undefined}
             >
-              {config.icon} {config.label}
+              {config.icon} {label}
             </button>
           )
         })}
@@ -69,18 +76,21 @@ export default function CategoryFilter({ articles }: CategoryFilterProps) {
       {/* Articles */}
       {featured && (
         <section className="mb-8">
-          <ArticleCard article={featured} featured />
+          <ArticleCard article={featured} featured locale={locale} />
         </section>
       )}
 
       {rest.length > 0 && (
         <section>
           <h2 className="text-lg font-bold text-foreground mb-4">
-            {activeCategory === 'all' ? 'Derniers articles' : `Articles ${categoryConfig[activeCategory].label}`}
+            {activeCategory === 'all'
+              ? t.latestArticles
+              : `${t.latestArticles} ${t.categories[activeCategory as keyof typeof t.categories] || categoryConfig[activeCategory].label}`
+            }
           </h2>
           <div className="grid gap-4 sm:grid-cols-2">
             {rest.map((article) => (
-              <ArticleCard key={article.slug} article={article} />
+              <ArticleCard key={article.slug} article={article} locale={locale} />
             ))}
           </div>
         </section>
@@ -88,7 +98,7 @@ export default function CategoryFilter({ articles }: CategoryFilterProps) {
 
       {filteredArticles.length === 0 && (
         <p className="text-muted text-center py-12">
-          Aucun article dans cette catégorie.
+          {t.noArticlesInCategory}
         </p>
       )}
     </>

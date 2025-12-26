@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 interface ShareButtonsProps {
   url: string
@@ -8,6 +9,7 @@ interface ShareButtonsProps {
 }
 
 export default function ShareButtons({ url, title }: ShareButtonsProps) {
+  const { t } = useLanguage()
   const [copied, setCopied] = useState(false)
 
   const encodedUrl = encodeURIComponent(url)
@@ -31,7 +33,7 @@ export default function ShareButtons({ url, title }: ShareButtonsProps) {
 
   return (
     <div className="flex items-center gap-2">
-      <span className="text-sm text-muted">Partager :</span>
+      <span className="text-sm text-muted">{t.share}</span>
 
       {/* Twitter/X */}
       <a
@@ -76,7 +78,7 @@ export default function ShareButtons({ url, title }: ShareButtonsProps) {
       <button
         onClick={copyToClipboard}
         className="p-2 rounded-lg bg-card border border-card-border hover:border-accent/50 transition-colors relative"
-        title="Copier le lien"
+        title={copied ? t.linkCopied : t.copyLink}
       >
         {copied ? (
           <svg className="w-4 h-4 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

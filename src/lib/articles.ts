@@ -1,8 +1,10 @@
 import fs from 'fs'
 import path from 'path'
 import { type Category } from './categories'
+import { type Locale, defaultLocale } from './i18n'
 
 export { type Category, categoryConfig, allCategories } from './categories'
+export { type Locale, defaultLocale } from './i18n'
 
 export interface Article {
   slug: string
@@ -22,8 +24,12 @@ const articleDates: Record<string, string> = {
   'metroid-prime-4-attente': '2025-12-21',
 }
 
-const contentDirectory = path.join(process.cwd(), 'content')
+const baseContentDirectory = path.join(process.cwd(), 'content')
 const imagesDirectory = path.join(process.cwd(), 'public', 'images')
+
+function getContentDirectory(locale: Locale): string {
+  return path.join(baseContentDirectory, locale)
+}
 
 function findImage(slug: string): string | undefined {
   const extensions = ['.png', '.jpg', '.jpeg', '.webp']
@@ -76,7 +82,8 @@ function parseArticle(slug: string, fileContent: string): { title: string; excer
   return { title, excerpt, content, category }
 }
 
-export function getAllArticles(): Article[] {
+export function getAllArticles(locale: Locale = defaultLocale): Article[] {
+  const contentDirectory = getContentDirectory(locale)
   if (!fs.existsSync(contentDirectory)) {
     return []
   }
@@ -99,7 +106,8 @@ export function getAllArticles(): Article[] {
   return articles
 }
 
-export function getArticleBySlug(slug: string): Article | null {
+export function getArticleBySlug(slug: string, locale: Locale = defaultLocale): Article | null {
+  const contentDirectory = getContentDirectory(locale)
   const fullPath = path.join(contentDirectory, `${slug}.md`)
 
   if (!fs.existsSync(fullPath)) {
@@ -114,7 +122,8 @@ export function getArticleBySlug(slug: string): Article | null {
   return { slug, title, excerpt, content, category, image, date }
 }
 
-export function getAllSlugs(): string[] {
+export function getAllSlugs(locale: Locale = defaultLocale): string[] {
+  const contentDirectory = getContentDirectory(locale)
   if (!fs.existsSync(contentDirectory)) {
     return []
   }
