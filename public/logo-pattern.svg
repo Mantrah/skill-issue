@@ -1,9 +1,0 @@
-<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <g opacity="0.12">
-    <rect x="18" y="30" width="44" height="20" rx="6" stroke="currentColor" stroke-width="2"/>
-    <line x1="28" y1="40" x2="36" y2="40" stroke="currentColor" stroke-width="2"/>
-    <line x1="32" y1="36" x2="32" y2="44" stroke="currentColor" stroke-width="2"/>
-    <circle cx="48" cy="42" r="3" fill="currentColor"/>
-    <circle cx="56" cy="38" r="3" fill="currentColor"/>
-  </g>
-</svg>

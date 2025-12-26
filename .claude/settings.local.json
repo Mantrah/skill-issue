@@ -26,7 +26,8 @@
       "Bash(tasklist:*)",
       "Bash(findstr:*)",
       "Bash(timeout:*)",
-      "Bash(cmd.exe /c \"del /f /q \"\"\\\\?\\\\C:\\\\Users\\\\phazo\\\\OneDrive\\\\Bureau\\\\GX\\\\Dev\\\\Git\\\\skill-issue\\\\nul\"\"\")"
+      "Bash(cmd.exe /c \"del /f /q \"\"\\\\?\\\\C:\\\\Users\\\\phazo\\\\OneDrive\\\\Bureau\\\\GX\\\\Dev\\\\Git\\\\skill-issue\\\\nul\"\"\")",
+      "Bash(git rm:*)"
     ]
   }
 }

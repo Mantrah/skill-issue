@@ -32,7 +32,7 @@ export const translations = {
     reportThanks: 'Merci pour votre signalement !',
 
     // Footer
-    disclaimer: 'Le contenu est géré par des développeurs <s>sous-payés</s> juniors. Certains sont soupçonnés d\'avoir confondu leur café avec du whisky, restez donc vigilants lorsque vous nous citez dans vos sources.',
+    disclaimer: 'Le contenu est géré par des développeurs <s>sous-payés</s> juniors. Certains ont été aperçus en train d\'ajouter des substances dans leur café. Restez donc vigilants lorsque vous nous citez dans vos sources.',
 
     // Categories
     categories: {
@@ -73,7 +73,7 @@ export const translations = {
     reportThanks: 'Thanks for your report!',
 
     // Footer
-    disclaimer: 'Content is managed by <s>underpaid</s> junior developers. Some are suspected of having confused their coffee with whisky, so stay vigilant when citing us in your sources.',
+    disclaimer: 'Content is managed by <s>underpaid</s> junior developers. Some have been spotted adding substances to their coffee. Stay vigilant when citing us in your sources.',
 
     // Categories
     categories: {

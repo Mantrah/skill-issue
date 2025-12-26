@@ -44,7 +44,7 @@ export default function CategoryFilter({ articlesFr, articlesEn }: CategoryFilte
       <div className="flex flex-wrap gap-2 mb-8">
         <button
           onClick={() => setActiveCategory('all')}
-          className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+          className={`px-4 py-2 rounded-full text-sm font-medium transition-colors cursor-pointer ${
             activeCategory === 'all'
               ? 'bg-accent text-white'
               : 'bg-card border border-card-border text-foreground hover:border-accent/50'
@@ -60,7 +60,7 @@ export default function CategoryFilter({ articlesFr, articlesEn }: CategoryFilte
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors cursor-pointer ${
                 isActive
                   ? 'text-white'
                   : 'bg-card border border-card-border text-foreground hover:border-accent/50'
