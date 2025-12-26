@@ -164,9 +164,10 @@ export default function ArticlePageClient({
 
   // Style du gradient dynamique (couleur opaque en haut, comme la page principale)
   const ambientStyle = {
-    background: ambientColor
+    backgroundImage: ambientColor
       ? `linear-gradient(180deg, ${ambientColor} 0%, var(--background) 67%)`
-      : 'var(--background)',
+      : 'none',
+    backgroundColor: 'var(--background)',
     backgroundAttachment: 'fixed' as const,
   }
 

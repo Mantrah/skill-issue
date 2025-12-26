@@ -45,20 +45,6 @@ body {
 }
 
 main {
-  background:
-    url('/dpad.svg') left center / 15% no-repeat,
-    url('/buttons.svg') right center / 15% no-repeat,
-    linear-gradient(90deg, #2d1515 0%, var(--background) 50%, #3a3a3a 100%);
-  background-attachment: fixed, fixed, fixed;
+  background-color: var(--background);
   min-height: 100vh;
-}
-
-@media (prefers-color-scheme: light) {
-  main {
-    background:
-      url('/dpad.svg') left center / 15% no-repeat,
-      url('/buttons.svg') right center / 15% no-repeat,
-      linear-gradient(90deg, #fecaca 0%, var(--background) 50%, #ffffff 100%);
-    background-attachment: fixed, fixed, fixed;
-  }
 }
