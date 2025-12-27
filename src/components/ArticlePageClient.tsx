@@ -8,6 +8,7 @@ import { useAmbientColor } from '@/hooks/useAmbientColor'
 import { categoryConfig, type Category } from '@/lib/categories'
 import { formatDateLocale } from '@/lib/i18n'
 import ImagePlaceholder from './ImagePlaceholder'
+import GamepadDecorations from './GamepadDecorations'
 import ShareButtons from './ShareButtons'
 import LikeButton from './LikeButton'
 import ReportButton from './ReportButton'
@@ -85,12 +86,19 @@ export default function ArticlePageClient({
         <header className="mb-8">
           {article.image ? (
             <div className="relative w-full aspect-[3/1] rounded-xl overflow-hidden mb-6">
-              <Image
-                src={article.image}
-                alt={article.title}
-                fill
-                className="object-cover"
-              />
+              <GamepadDecorations />
+              {/* Zone écran centrale - 50% au milieu avec bordure */}
+              <div className="absolute inset-0 flex items-center justify-center z-10 p-2">
+                <div className="w-[60%] h-full border-2 border-black rounded-sm bg-black overflow-hidden flex items-center">
+                  <Image
+                    src={article.image}
+                    alt={article.title}
+                    width={1920}
+                    height={1080}
+                    className="w-full h-auto"
+                  />
+                </div>
+              </div>
             </div>
           ) : (
             <ImagePlaceholder

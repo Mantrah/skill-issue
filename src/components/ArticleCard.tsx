@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { categoryConfig, type Category } from '@/lib/categories'
 import { formatDateLocale, type Locale } from '@/lib/i18n'
 import ImagePlaceholder from './ImagePlaceholder'
+import GamepadDecorations from './GamepadDecorations'
 
 interface Article {
   slug: string
@@ -29,12 +30,19 @@ export default function ArticleCard({ article, featured = false, locale = 'fr' }
         <Link href={`/article/${article.slug}`} className="block">
           {article.image ? (
             <div className="relative w-full aspect-[2.5/1]">
-              <Image
-                src={article.image}
-                alt={article.title}
-                fill
-                className="object-cover"
-              />
+              <GamepadDecorations />
+              {/* Zone écran centrale - 50% au milieu avec bordure */}
+              <div className="absolute inset-0 flex items-center justify-center z-10 p-2">
+                <div className="w-[60%] h-full border-2 border-black rounded-sm bg-black overflow-hidden flex items-center">
+                  <Image
+                    src={article.image}
+                    alt={article.title}
+                    width={1920}
+                    height={1080}
+                    className="w-full h-auto"
+                  />
+                </div>
+              </div>
             </div>
           ) : (
             <ImagePlaceholder
@@ -73,7 +81,7 @@ export default function ArticleCard({ article, featured = false, locale = 'fr' }
               src={article.image}
               alt={article.title}
               fill
-              className="object-cover"
+              className="object-cover object-[50%_25%]"
             />
           </div>
         ) : (
