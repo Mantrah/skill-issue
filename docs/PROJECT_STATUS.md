@@ -2,7 +2,7 @@
 
 ## État actuel
 
-**Phase** : Setup initial terminé, prêt pour Phase 2
+**Phase** : MVP fonctionnel - En cours d'amélioration
 
 ## Phases d'implémentation
 
@@ -15,7 +15,7 @@
 - [x] Mettre à jour README
 - [x] Créer documentation (CLAUDE.md, ARCHITECTURE.md)
 
-### Phase 2 : Auth & Base (À faire)
+### Phase 2 : Auth & Base (Partiel)
 - [ ] Créer projet Supabase
 - [ ] Configurer tables (voir ARCHITECTURE.md)
 - [ ] Intégrer Supabase Auth
@@ -24,11 +24,14 @@
 - [ ] Créer middleware d'authentification
 - [ ] Page login/callback
 
-### Phase 3 : Articles public (À faire)
-- [ ] Page d'accueil avec liste articles
-- [ ] Page article individuelle
-- [ ] Composants ArticleCard, ArticleList
-- [ ] SEO meta tags + Open Graph
+### Phase 3 : Articles public ✅
+- [x] Page d'accueil avec liste articles
+- [x] Page article individuelle
+- [x] Composants ArticleCard, ArticleList
+- [x] SEO meta tags + Open Graph
+- [x] Filtres par catégorie
+- [x] GamepadDecorations (style console)
+- [x] Effet Ambilight sur page article
 
 ### Phase 4 : Admin (À faire)
 - [ ] Dashboard admin (route protégée)
@@ -36,27 +39,31 @@
 - [ ] Éditeur markdown
 - [ ] Upload images
 
-### Phase 5 : Commentaires (À faire)
-- [ ] Section commentaires sur articles
+### Phase 5 : Commentaires ✅
+- [x] Section commentaires sur articles
+- [x] Système de likes
+- [x] Commentaires bots automatiques
 - [ ] Formulaire ajout commentaire (auth required)
 - [ ] Modération admin
 
-### Phase 6 : Multilingue (À faire)
-- [ ] Setup next-intl
-- [ ] Dictionnaires EN/FR
-- [ ] Switcher de langue
-- [ ] Routes localisées
+### Phase 6 : Multilingue ✅
+- [x] Contexte de langue (LanguageContext)
+- [x] Dictionnaires EN/FR
+- [x] Switcher de langue
+- [x] Articles bilingues (content/fr, content/en)
 
-### Phase 7 : Polish (À faire)
-- [ ] Partage social
-- [ ] Design responsive
-- [ ] Dark mode (optionnel)
+### Phase 7 : Polish (En cours)
+- [x] Partage social (ShareButtons)
+- [x] Design responsive
+- [x] Dark mode (thème sombre par défaut)
+- [x] Bouton signaler (ReportButton)
 - [ ] Tests de performance
 
-## Articles validés (4)
+## Articles validés (5)
 
 | Fichier | Sujet | Status |
 |---------|-------|--------|
+| palworld-joueurs-realisation.md | Palworld / Réalisation joueurs | ✅ Validé |
 | metroid-prime-4-attente.md | Nintendo / Metroid Prime 4 | ✅ Validé |
 | nintendo-fuite-cartouches.md | Nintendo / Fuite Switch 2 | ✅ Validé |
 | ea-fc25-microtransactions.md | EA / Microtransactions | ✅ Validé |
@@ -78,4 +85,4 @@ Règles clés établies pendant les tests :
 
 ## Dernière mise à jour
 
-2025-12-21 - Setup initial terminé
+2025-12-27 - Ajout GamepadDecorations, effet Ambilight, mise à jour documentation

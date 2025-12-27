@@ -39,12 +39,19 @@ skill-issue/
 │   │   └── layout.tsx
 │   ├── components/
 │   │   ├── ui/                       # Composants réutilisables
-│   │   ├── ArticleCard.tsx
+│   │   ├── ArticleCard.tsx           # Carte article (featured + preview)
 │   │   ├── ArticleList.tsx
+│   │   ├── ArticlePageClient.tsx     # Page article avec Ambilight
 │   │   ├── CommentSection.tsx
+│   │   ├── GamepadDecorations.tsx    # Décorations manette (D-pad + boutons)
 │   │   ├── Header.tsx
 │   │   ├── Footer.tsx
-│   │   └── ShareButtons.tsx
+│   │   ├── ShareButtons.tsx
+│   │   ├── LikeButton.tsx
+│   │   ├── ReportButton.tsx
+│   │   └── ImagePlaceholder.tsx
+│   ├── hooks/
+│   │   └── useAmbientColor.ts        # Hook extraction couleur dominante
 │   ├── lib/
 │   │   ├── supabase/
 │   │   │   ├── client.ts
@@ -126,6 +133,34 @@ CREATE TABLE categories (
   name_fr VARCHAR(100) NOT NULL
 );
 ```
+
+## Composants visuels clés
+
+### GamepadDecorations
+Composant décoratif qui encadre les images d'articles dans un style "console de jeu" :
+- **D-pad** (gauche) : Croix directionnelle SVG avec gradient rouge
+- **Boutons** (droite) : 2 boutons gris en diagonale
+- **Console** : Background gradient gris foncé, bordure accent rouge, coins arrondis (rounded-3xl)
+
+### Règles d'affichage des images
+Pour les images featured et article page :
+- **Largeur** : L'image remplit toujours 100% de la largeur de l'écran central
+- **Letterboxing** : Barres noires uniquement horizontales (haut/bas), jamais verticales
+- **Zones** : D-pad 20% | Écran 60% | Boutons 20%
+- **Bordure écran** : 2px noir
+
+```tsx
+// Configuration image
+<Image
+  src={article.image}
+  width={1920}
+  height={1080}
+  className="w-full h-auto"
+/>
+```
+
+### Effet Ambilight
+Le hook `useAmbientColor` extrait la couleur dominante de l'image d'article et l'applique en fond subtil sur la page article, créant un effet d'immersion.
 
 ## Dépendances principales
 
