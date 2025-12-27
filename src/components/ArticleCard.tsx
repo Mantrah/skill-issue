@@ -76,7 +76,7 @@ export default function ArticleCard({ article, featured = false, locale = 'fr' }
     <article className="group bg-card border border-card-border rounded-xl overflow-hidden hover:border-accent/30 transition-colors">
       <Link href={`/article/${article.slug}`} className="flex flex-col sm:flex-row">
         {article.image ? (
-          <div className="relative w-full sm:w-40 h-32 sm:h-auto flex-shrink-0">
+          <div className="relative w-full sm:w-48 h-32 sm:h-full min-h-[120px] flex-shrink-0">
             <Image
               src={article.image}
               alt={article.title}
@@ -87,7 +87,7 @@ export default function ArticleCard({ article, featured = false, locale = 'fr' }
         ) : (
           <ImagePlaceholder
             category={article.category}
-            className="w-full sm:w-40 h-32 sm:h-auto flex-shrink-0"
+            className="w-full sm:w-48 h-32 sm:h-full min-h-[120px] flex-shrink-0"
           />
         )}
         <div className="p-4 flex flex-col justify-center">
