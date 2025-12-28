@@ -1,3 +1,7 @@
+---
+category: nintendo
+---
+
 # Metroid Prime 4 finally released after years of development
 
 **As Nintendo finally announces the release of Metroid Prime 4: Beyond on December 4th, thousands of gamers are realizing with horror everything that has happened in their lives since the game was announced. Some struggle to recognize their loved ones.**

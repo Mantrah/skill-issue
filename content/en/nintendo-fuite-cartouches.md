@@ -1,3 +1,7 @@
+---
+category: nintendo
+---
+
 # Switch 2: Leak reveals new 128GB cartridges
 
 **A third-party studio accidentally announced the arrival of new 128GB cartridges for the Nintendo Switch 2. The press release was deleted 4 minutes later. The community manager has not been heard from since.**

@@ -45,14 +45,49 @@ skill-issue/
 - **Tri** : Par date décroissante
 
 ### Catégories
-| ID | Label | Couleur | Icône |
-|----|-------|---------|-------|
-| nintendo | Nintendo | #e11d48 | 🎮 |
-| ea | EA Sports | #0ea5e9 | ⚽ |
-| ubisoft | Ubisoft | #8b5cf6 | 🗡️ |
-| sony | PlayStation | #2563eb | 🎯 |
-| microsoft | Xbox | #22c55e | 🎲 |
-| general | Gaming | #71717a | 👾 |
+
+**Système multi-tags** : Un article peut avoir plusieurs tags (ex: Palworld = survival + rpg + indie)
+
+**Priorité de détection** : Frontmatter YAML (prioritaire) → Détection par slug → Fallback `general`
+
+**Format frontmatter article** :
+```yaml
+---
+tags: [survival, rpg, indie]
+---
+```
+
+**Format legacy supporté** (converti en tableau) :
+```yaml
+---
+category: nintendo
+---
+```
+
+**Filtrage homepage** : Article affiché si au moins 1 tag matche la catégorie sélectionnée
+
+| Groupe | ID | Label | Couleur | Icône |
+|--------|-----|-------|---------|-------|
+| Éditeurs | aaa | AAA | #dc2626 | 🏢 |
+| | indie | Indie | #f59e0b | 🎨 |
+| Compétitif | esports | Esports | #8b5cf6 | 🏆 |
+| Genres | moba | MOBA | #06b6d4 | ⚔️ |
+| | fps | FPS | #ef4444 | 🎯 |
+| | mmorpg | MMORPG | #6366f1 | 🐉 |
+| | rpg | RPG | #a855f7 | ⚗️ |
+| | battle-royale | Battle Royale | #f97316 | 🪂 |
+| | survival | Survival | #84cc16 | 🏕️ |
+| Plateformes | nintendo | Nintendo | #e11d48 | 🍄 |
+| | playstation | PlayStation | #2563eb | 🎮 |
+| | xbox | Xbox | #22c55e | 🟢 |
+| | pc | PC | #475569 | 🖥️ |
+| | mobile | Mobile | #ec4899 | 📱 |
+| | vr | VR | #7c3aed | 🥽 |
+| Thématiques | retro | Retro | #ca8a04 | 👾 |
+| | industry | Industry | #64748b | 📊 |
+| | hardware | Hardware | #0891b2 | 🔧 |
+| | streaming | Streaming | #9333ea | 📺 |
+| Fallback | general | Gaming | #71717a | 🎲 |
 
 ### Commentaires
 - **Stockage** : JSON dans `/data/comments/[slug].json`
@@ -174,11 +209,12 @@ Skill d'implémentation APRÈS validation.
 
 ## Données
 
-### Articles (4 publiés)
-| Slug | Catégorie | Langues |
-|------|-----------|---------|
-| ubisoft-ac-shadows | ubisoft | FR, EN |
-| ea-fc25-microtransactions | ea | FR, EN |
+### Articles (5 publiés)
+| Slug | Tags | Langues |
+|------|------|---------|
+| palworld-joueurs-realisation | survival, rpg, indie | FR, EN |
+| ubisoft-ac-shadows | aaa | FR, EN |
+| ea-fc25-microtransactions | aaa | FR, EN |
 | nintendo-fuite-cartouches | nintendo | FR, EN |
 | metroid-prime-4-attente | nintendo | FR, EN |
 

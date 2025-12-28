@@ -1,3 +1,7 @@
+---
+category: aaa
+---
+
 # Assassin's Creed Shadows Receives Positive Reviews Despite Multiple Delays
 
 **The game, released in March 2025 after three postponements, has finally received favorable reviews. Ubisoft's communications department has no idea how to handle good news.**

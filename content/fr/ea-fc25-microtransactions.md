@@ -1,3 +1,7 @@
+---
+category: aaa
+---
+
 # EA Sports FC 25 : le nouveau Season Pass fait débat
 
 **Le nouveau pass saisonnier payant d'EA Sports FC 25 fait polémique. Un représentant d'Electronic Arts assure que "le sentiment de fierté et d'accomplissement n'a pas de prix, mais on peut quand même vous en donner un".**

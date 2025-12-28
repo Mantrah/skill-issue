@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
-import { type Category } from './categories'
+import matter from 'gray-matter'
+import { type Category, allCategories } from './categories'
 import { type Locale, defaultLocale } from './i18n'
 
 export { type Category, categoryConfig, allCategories } from './categories'
@@ -11,7 +12,8 @@ export interface Article {
   title: string
   excerpt: string
   content: string
-  category: Category
+  tags: Category[]
+  category: Category // Premier tag (rétrocompatibilité)
   image?: string
   date: string
 }
@@ -43,44 +45,114 @@ function findImage(slug: string): string | undefined {
   return undefined
 }
 
-function detectCategory(slug: string, content: string): Category {
-  const text = (slug + ' ' + content).toLowerCase()
-
-  // Vérifier les éditeurs spécifiques d'abord (priorité sur les plateformes)
-  if (text.includes('ubisoft') || text.includes('assassin\'s creed') || text.includes('assassin')) {
-    return 'ubisoft'
-  }
-  if (text.includes('ea sports') || text.includes('ea fc') || text.includes('fifa') || text.includes('fc 25') || text.includes('fc25')) {
-    return 'ea'
-  }
-  // Puis les plateformes
-  if (text.includes('nintendo') || text.includes('metroid') || text.includes('zelda') || text.includes('mario')) {
-    return 'nintendo'
-  }
-  if (text.includes('playstation') || text.includes('sony')) {
-    return 'sony'
-  }
-  if (text.includes('xbox') || text.includes('microsoft')) {
-    return 'microsoft'
-  }
-
-  return 'general'
+function isValidCategory(value: unknown): value is Category {
+  return typeof value === 'string' && allCategories.includes(value as Category)
 }
 
-function parseArticle(slug: string, fileContent: string): { title: string; excerpt: string; content: string; category: Category } {
-  const lines = fileContent.split('\n')
+function parseTagsFromFrontmatter(frontmatter: Record<string, unknown>): Category[] {
+  // Support both "tags: [a, b]" and legacy "category: a"
+  if (Array.isArray(frontmatter.tags)) {
+    return frontmatter.tags.filter(isValidCategory)
+  }
+  if (isValidCategory(frontmatter.category)) {
+    return [frontmatter.category]
+  }
+  return []
+}
+
+function detectTagsFromSlug(slug: string): Category[] {
+  const slugLower = slug.toLowerCase()
+  const detected: Category[] = []
+
+  // Plateformes
+  if (slugLower.includes('nintendo') || slugLower.includes('zelda') || slugLower.includes('mario') || slugLower.includes('metroid')) {
+    detected.push('nintendo')
+  }
+  if (slugLower.includes('playstation') || slugLower.includes('sony') || slugLower.includes('ps5') || slugLower.includes('ps4')) {
+    detected.push('playstation')
+  }
+  if (slugLower.includes('xbox') || slugLower.includes('microsoft')) {
+    detected.push('xbox')
+  }
+
+  // Éditeurs/Types
+  if (slugLower.includes('ubisoft') || slugLower.includes('assassin') || slugLower.includes('ea-') || slugLower.includes('fifa') || slugLower.includes('fc25') || slugLower.includes('fc-25')) {
+    detected.push('aaa')
+  }
+  if (slugLower.includes('indie')) {
+    detected.push('indie')
+  }
+
+  // Genres
+  if (slugLower.includes('moba') || slugLower.includes('league') || slugLower.includes('dota')) {
+    detected.push('moba')
+  }
+  if (slugLower.includes('fps') || slugLower.includes('shooter') || slugLower.includes('call-of-duty') || slugLower.includes('valorant')) {
+    detected.push('fps')
+  }
+  if (slugLower.includes('mmorpg') || slugLower.includes('wow') || slugLower.includes('ffxiv')) {
+    detected.push('mmorpg')
+  }
+  if (slugLower.includes('rpg')) {
+    detected.push('rpg')
+  }
+  if (slugLower.includes('battle-royale') || slugLower.includes('fortnite') || slugLower.includes('pubg') || slugLower.includes('warzone')) {
+    detected.push('battle-royale')
+  }
+  if (slugLower.includes('survival') || slugLower.includes('palworld') || slugLower.includes('rust') || slugLower.includes('ark')) {
+    detected.push('survival')
+  }
+
+  // Autres thématiques
+  if (slugLower.includes('esport') || slugLower.includes('tournament') || slugLower.includes('competitive')) {
+    detected.push('esports')
+  }
+  if (slugLower.includes('mobile') || slugLower.includes('gacha')) {
+    detected.push('mobile')
+  }
+  if (slugLower.includes('vr') || slugLower.includes('virtual-reality') || slugLower.includes('meta-quest')) {
+    detected.push('vr')
+  }
+  if (slugLower.includes('retro') || slugLower.includes('nostalgia') || slugLower.includes('remaster')) {
+    detected.push('retro')
+  }
+  if (slugLower.includes('industry') || slugLower.includes('layoff') || slugLower.includes('crunch')) {
+    detected.push('industry')
+  }
+  if (slugLower.includes('hardware') || slugLower.includes('gpu') || slugLower.includes('console')) {
+    detected.push('hardware')
+  }
+  if (slugLower.includes('streaming') || slugLower.includes('twitch') || slugLower.includes('streamer')) {
+    detected.push('streaming')
+  }
+  if (slugLower.includes('pc')) {
+    detected.push('pc')
+  }
+
+  return detected.length > 0 ? detected : ['general']
+}
+
+function parseArticle(slug: string, fileContent: string): { title: string; excerpt: string; content: string; tags: Category[] } {
+  // Parse frontmatter avec gray-matter
+  const { data: frontmatter, content: markdownContent } = matter(fileContent)
+
+  const lines = markdownContent.split('\n')
 
   const titleLine = lines.find(line => line.startsWith('# '))
   const title = titleLine ? titleLine.replace('# ', '').trim() : 'Sans titre'
 
-  const excerptMatch = fileContent.match(/\*\*(.+?)\*\*/s)
+  const excerptMatch = markdownContent.match(/\*\*(.+?)\*\*/s)
   const excerpt = excerptMatch ? excerptMatch[1].trim() : ''
 
   const content = lines.filter(line => !line.startsWith('# ')).join('\n').trim()
 
-  const category = detectCategory(slug, fileContent)
+  // Priorité : frontmatter > détection par slug > fallback general
+  let tags = parseTagsFromFrontmatter(frontmatter)
+  if (tags.length === 0) {
+    tags = detectTagsFromSlug(slug)
+  }
 
-  return { title, excerpt, content, category }
+  return { title, excerpt, content, tags }
 }
 
 export function getAllArticles(locale: Locale = defaultLocale): Article[] {
@@ -96,11 +168,11 @@ export function getAllArticles(locale: Locale = defaultLocale): Article[] {
       const slug = fileName.replace(/\.md$/, '')
       const fullPath = path.join(contentDirectory, fileName)
       const fileContent = fs.readFileSync(fullPath, 'utf8')
-      const { title, excerpt, content, category } = parseArticle(slug, fileContent)
+      const { title, excerpt, content, tags } = parseArticle(slug, fileContent)
       const image = findImage(slug)
       const date = articleDates[slug] || '2025-01-01'
 
-      return { slug, title, excerpt, content, category, image, date }
+      return { slug, title, excerpt, content, tags, category: tags[0], image, date }
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
@@ -116,11 +188,11 @@ export function getArticleBySlug(slug: string, locale: Locale = defaultLocale): 
   }
 
   const fileContent = fs.readFileSync(fullPath, 'utf8')
-  const { title, excerpt, content, category } = parseArticle(slug, fileContent)
+  const { title, excerpt, content, tags } = parseArticle(slug, fileContent)
   const image = findImage(slug)
   const date = articleDates[slug] || '2025-01-01'
 
-  return { slug, title, excerpt, content, category, image, date }
+  return { slug, title, excerpt, content, tags, category: tags[0], image, date }
 }
 
 export function getAllSlugs(locale: Locale = defaultLocale): string[] {

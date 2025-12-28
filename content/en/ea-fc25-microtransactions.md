@@ -1,3 +1,7 @@
+---
+category: aaa
+---
+
 # EA Sports FC 25: New Season Pass Sparks Controversy
 
 **EA Sports FC 25's new paid seasonal pass is causing an uproar. An Electronic Arts representative assures that "the sense of pride and accomplishment is priceless, but we can still give you a price point".**

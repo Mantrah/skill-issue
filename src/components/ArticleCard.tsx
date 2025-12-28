@@ -9,6 +9,7 @@ interface Article {
   title: string
   excerpt: string
   content: string
+  tags: Category[]
   category: Category
   image?: string
   date: string
@@ -21,20 +22,20 @@ interface ArticleCardProps {
 }
 
 export default function ArticleCard({ article, featured = false, locale = 'fr' }: ArticleCardProps) {
-  const config = categoryConfig[article.category]
+  // Afficher max 3 tags
+  const displayTags = article.tags.slice(0, 3)
 
   if (featured) {
     return (
       <article className="group bg-card border border-card-border rounded-xl overflow-hidden hover:border-accent/30 transition-colors">
         <Link href={`/article/${article.slug}`} className="block">
           {article.image ? (
-            <div className="w-full">
+            <div className="relative w-full aspect-[2/1] max-h-[400px]">
               <Image
                 src={article.image}
                 alt={article.title}
-                width={1920}
-                height={1080}
-                className="w-full h-auto"
+                fill
+                className="object-cover"
               />
             </div>
           ) : (
@@ -44,13 +45,19 @@ export default function ArticleCard({ article, featured = false, locale = 'fr' }
             />
           )}
           <div className="p-5">
-            <div className="flex items-center gap-3 mb-3">
-              <span
-                className="inline-block px-2.5 py-1 text-xs font-semibold rounded-full"
-                style={{ backgroundColor: config.color, color: '#fff' }}
-              >
-                {config.label}
-              </span>
+            <div className="flex items-center gap-2 mb-3 flex-wrap">
+              {displayTags.map(tag => {
+                const tagConfig = categoryConfig[tag]
+                return (
+                  <span
+                    key={tag}
+                    className="inline-block px-2.5 py-1 text-xs font-semibold rounded-full"
+                    style={{ backgroundColor: tagConfig.color, color: '#fff' }}
+                  >
+                    {tagConfig.label}
+                  </span>
+                )
+              })}
               <span className="text-xs text-muted">{formatDateLocale(article.date, locale)}</span>
             </div>
             <h2 className="text-xl md:text-2xl font-bold text-foreground leading-tight group-hover:text-accent transition-colors">
@@ -84,13 +91,19 @@ export default function ArticleCard({ article, featured = false, locale = 'fr' }
           />
         )}
         <div className="p-4 flex-1 flex flex-col justify-center">
-          <div className="flex items-center gap-2 mb-2">
-            <span
-              className="inline-block w-fit px-2 py-0.5 text-xs font-semibold rounded"
-              style={{ backgroundColor: config.color, color: '#fff' }}
-            >
-              {config.label}
-            </span>
+          <div className="flex items-center gap-1.5 mb-2 flex-wrap">
+            {displayTags.map(tag => {
+              const tagConfig = categoryConfig[tag]
+              return (
+                <span
+                  key={tag}
+                  className="inline-block w-fit px-2 py-0.5 text-xs font-semibold rounded"
+                  style={{ backgroundColor: tagConfig.color, color: '#fff' }}
+                >
+                  {tagConfig.label}
+                </span>
+              )
+            })}
             <span className="text-xs text-muted">{formatDateLocale(article.date, locale)}</span>
           </div>
           <h2 className="text-base font-semibold leading-snug text-foreground group-hover:text-accent transition-colors line-clamp-2">

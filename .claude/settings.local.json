@@ -27,7 +27,24 @@
       "Bash(findstr:*)",
       "Bash(timeout:*)",
       "Bash(cmd.exe /c \"del /f /q \"\"\\\\?\\\\C:\\\\Users\\\\phazo\\\\OneDrive\\\\Bureau\\\\GX\\\\Dev\\\\Git\\\\skill-issue\\\\nul\"\"\")",
-      "Bash(git rm:*)"
+      "Bash(git rm:*)",
+      "Bash(dir /b \"c:\\\\Users\\\\phazo\\\\OneDrive\\\\Bureau\\\\GX\\\\Dev\\\\Git\\\\skill-issue\\\\.claude\\\\agents\\\\bots\")",
+      "Bash(del \"c:\\\\Users\\\\phazo\\\\OneDrive\\\\Bureau\\\\GX\\\\Dev\\\\Git\\\\skill-issue\\\\content\\\\fr\\\\les-game-awards-ajoutent-categorie-meilleur-remaster-jeu-sorti-il-y-a-six-mois.md\")",
+      "Bash(del \"c:\\\\Users\\\\phazo\\\\OneDrive\\\\Bureau\\\\GX\\\\Dev\\\\Git\\\\skill-issue\\\\content\\\\en\\\\les-game-awards-ajoutent-categorie-meilleur-remaster-jeu-sorti-il-y-a-six-mois.md\")",
+      "Bash(cmd.exe /c \"del /f /q \"\"c:\\\\Users\\\\phazo\\\\OneDrive\\\\Bureau\\\\GX\\\\Dev\\\\Git\\\\skill-issue\\\\content\\\\fr\\\\les-game-awards-ajoutent-categorie-meilleur-remaster-jeu-sorti-il-y-a-six-mois.md\"\"\")",
+      "Bash(cmd.exe /c \"del /f /q \"\"c:\\\\Users\\\\phazo\\\\OneDrive\\\\Bureau\\\\GX\\\\Dev\\\\Git\\\\skill-issue\\\\content\\\\en\\\\les-game-awards-ajoutent-categorie-meilleur-remaster-jeu-sorti-il-y-a-six-mois.md\"\"\")",
+      "Bash(cmd.exe /c \"del /f /q \"\"c:\\\\Users\\\\phazo\\\\OneDrive\\\\Bureau\\\\GX\\\\Dev\\\\Git\\\\skill-issue\\\\content\\\\fr\\\\les-game-awards-ajoutent-categorie-meilleur-remaster-jeu-sorti-il-y-a-six-mois.md\"\" & del /f /q \"\"c:\\\\Users\\\\phazo\\\\OneDrive\\\\Bureau\\\\GX\\\\Dev\\\\Git\\\\skill-issue\\\\content\\\\en\\\\les-game-awards-ajoutent-categorie-meilleur-remaster-jeu-sorti-il-y-a-six-mois.md\"\"\")",
+      "Bash(cmd.exe /c \"del /f /q \"\"c:\\\\Users\\\\phazo\\\\OneDrive\\\\Bureau\\\\GX\\\\Dev\\\\Git\\\\skill-issue\\\\content\\\\fr\\\\game-awards-remaster.md\"\" & del /f /q \"\"c:\\\\Users\\\\phazo\\\\OneDrive\\\\Bureau\\\\GX\\\\Dev\\\\Git\\\\skill-issue\\\\content\\\\en\\\\game-awards-remaster.md\"\"\")",
+      "Bash(cmd.exe /c \"cd /d c:\\\\Users\\\\phazo\\\\OneDrive\\\\Bureau\\\\GX\\\\Dev\\\\Git\\\\skill-issue && npm run dev\")",
+      "Bash(npm ls:*)",
+      "Bash(dir /b \"c:\\\\Users\\\\phazo\\\\OneDrive\\\\Bureau\\\\GX\\\\Dev\\\\Git\\\\skill-issue\\\\.claude\\\\agents\")",
+      "Bash(cmd.exe /c \"taskkill /F /IM node.exe\")",
+      "Bash(cmd.exe /c \"taskkill /F /PID 101172\")",
+      "Bash(ls:*)",
+      "Bash(dir:*)",
+      "Bash(cmd.exe /c \"del /f /q \"\"c:\\\\Users\\\\phazo\\\\OneDrive\\\\Bureau\\\\GX\\\\Dev\\\\Git\\\\skill-issue\\\\content\\\\fr\\\\ea-rachat-arabie-saoudite.md\"\" & del /f /q \"\"c:\\\\Users\\\\phazo\\\\OneDrive\\\\Bureau\\\\GX\\\\Dev\\\\Git\\\\skill-issue\\\\content\\\\en\\\\ea-rachat-arabie-saoudite.md\"\" & del /f /q \"\"c:\\\\Users\\\\phazo\\\\OneDrive\\\\Bureau\\\\GX\\\\Dev\\\\Git\\\\skill-issue\\\\public\\\\images\\\\ea-rachat-arabie-saoudite.png\"\"\")",
+      "Bash(git reset:*)",
+      "Bash(cmd.exe /c \"del /f /q nul\")"
     ]
   }
 }

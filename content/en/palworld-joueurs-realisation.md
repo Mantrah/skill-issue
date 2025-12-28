@@ -1,3 +1,7 @@
+---
+tags: [survival, rpg]
+---
+
 # Palworld players realize they've just been catching creatures for 300 hours
 
 **A strange phenomenon is shaking the Palworld community: thousands of players are suddenly becoming aware that they've spent hundreds of hours doing exactly what they did in Pokémon, but with guns.**

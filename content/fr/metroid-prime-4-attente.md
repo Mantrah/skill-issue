@@ -1,3 +1,7 @@
+---
+category: nintendo
+---
+
 # Metroid Prime 4 enfin disponible après des années de développement
 
 **Alors que Nintendo annonce enfin la sortie de Metroid Prime 4: Beyond ce 4 décembre, des milliers de joueurs réalisent avec effroi tout ce qui s'est passé dans leur vie depuis l'annonce du jeu. Certains ont du mal à reconnaître leurs proches.**

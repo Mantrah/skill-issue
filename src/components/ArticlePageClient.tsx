@@ -19,6 +19,7 @@ interface Article {
   title: string
   excerpt: string
   content: string
+  tags: Category[]
   category: Category
   image?: string
   date: string
@@ -62,8 +63,8 @@ export default function ArticlePageClient({
     )
   }
 
-  const config = categoryConfig[article.category]
-  const categoryLabel = t.categories[article.category as keyof typeof t.categories] || config.label
+  // Afficher max 3 tags
+  const displayTags = article.tags.slice(0, 3)
 
   // Effet Ambilight : extraction couleur dynamique depuis l'image
   const { ambientStyle } = useAmbientColor(article.image)
@@ -82,18 +83,21 @@ export default function ArticlePageClient({
       <article>
         <header className="mb-8">
           {article.image ? (
-            <div className="relative w-full aspect-[3/1] rounded-xl overflow-hidden mb-6">
-              <GamepadDecorations />
-              {/* Zone écran centrale - 60% au milieu avec bordure */}
-              <div className="absolute inset-0 flex items-center justify-center z-10 p-2">
-                <div className="w-[60%] h-full border-2 border-black rounded-sm bg-black overflow-hidden flex items-center">
-                  <Image
-                    src={article.image}
-                    alt={article.title}
-                    width={1920}
-                    height={1080}
-                    className="w-full h-auto"
-                  />
+            <div className="relative w-full mb-6">
+              {/* Console avec écran */}
+              <div className="relative aspect-[3/1] rounded-xl overflow-hidden">
+                <GamepadDecorations />
+                {/* Zone écran centrale - 60% au milieu avec bordure */}
+                <div className="absolute inset-0 flex items-center justify-center z-10 p-2">
+                  <div className="w-[60%] h-full border-2 border-black rounded-sm bg-black overflow-hidden flex items-center">
+                    <Image
+                      src={article.image}
+                      alt={article.title}
+                      width={1920}
+                      height={1080}
+                      className="w-full h-auto"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -104,13 +108,20 @@ export default function ArticlePageClient({
             />
           )}
 
-          <div className="flex items-center gap-3 mb-4">
-            <span
-              className="inline-block px-2.5 py-1 text-xs font-semibold rounded-full"
-              style={{ backgroundColor: config.color, color: '#fff' }}
-            >
-              {categoryLabel}
-            </span>
+          <div className="flex items-center gap-2 mb-4 flex-wrap">
+            {displayTags.map(tag => {
+              const tagConfig = categoryConfig[tag]
+              const tagLabel = t.categories[tag as keyof typeof t.categories] || tagConfig.label
+              return (
+                <span
+                  key={tag}
+                  className="inline-block px-2.5 py-1 text-xs font-semibold rounded-full"
+                  style={{ backgroundColor: tagConfig.color, color: '#fff' }}
+                >
+                  {tagLabel}
+                </span>
+              )
+            })}
             <span className="text-sm text-muted">{formatDateLocale(article.date, locale)}</span>
           </div>
 

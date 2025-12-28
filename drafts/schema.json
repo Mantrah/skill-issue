@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["articles"],
+  "properties": {
+    "articles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "slug", "tags", "imageUrl", "date", "status", "createdAt", "fr", "en"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "UUID unique de l'article"
+          },
+          "slug": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$",
+            "description": "Identifiant URL-friendly"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["aaa", "indie", "esports", "moba", "fps", "mmorpg", "rpg", "nintendo", "playstation", "xbox", "pc", "mobile", "battle-royale", "survival", "vr", "retro", "industry", "hardware", "streaming", "general"]
+            },
+            "minItems": 1,
+            "maxItems": 3,
+            "description": "1-3 tags de catégorisation"
+          },
+          "imageUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL de l'image source (Wikimedia, etc.)"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Date de publication prévue (YYYY-MM-DD)"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["pending", "approved", "rejected", "published"],
+            "description": "Statut dans le workflow"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date de création du draft"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date de dernière modification"
+          },
+          "fr": {
+            "type": "object",
+            "required": ["title", "content"],
+            "properties": {
+              "title": { "type": "string" },
+              "content": { "type": "string", "description": "Contenu markdown complet" }
+            }
+          },
+          "en": {
+            "type": "object",
+            "required": ["title", "content"],
+            "properties": {
+              "title": { "type": "string" },
+              "content": { "type": "string", "description": "Contenu markdown complet" }
+            }
+          },
+          "metadata": {
+            "type": "object",
+            "description": "Métadonnées extensibles (source, author, etc.)",
+            "additionalProperties": true
+          }
+        }
+      }
+    }
+  }
+}

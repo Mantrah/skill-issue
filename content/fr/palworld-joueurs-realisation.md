@@ -1,3 +1,7 @@
+---
+tags: [survival, rpg]
+---
+
 # Des joueurs de Palworld réalisent qu'ils n'ont fait que capturer des créatures pendant 300 heures
 
 **Un phénomène étrange secoue la communauté Palworld : des milliers de joueurs prennent soudainement conscience qu'ils viennent de passer des centaines d'heures à faire exactement ce qu'ils faisaient dans Pokémon, mais avec des flingues.**

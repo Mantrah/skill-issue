@@ -11,7 +11,8 @@ interface Article {
   excerpt: string
   content: string
   date: string
-  category: Category
+  tags: Category[]
+  category: Category // Premier tag (rétrocompatibilité)
   image?: string
 }
 

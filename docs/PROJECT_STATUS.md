@@ -66,6 +66,7 @@
 - [x] Alignement favicon/header (fond sombre + manette outline)
 - [x] Gradient statique homepage (rouge/noir/gris)
 - [x] Effet Ambilight corrigé (anti-banding CSS, gradient ellipse centré à 8%)
+- [x] Refonte système catégories (20 catégories thématiques, multi-tags, frontmatter YAML)
 - [ ] Tests de performance
 
 ## Articles validés (6)
@@ -94,4 +95,4 @@ Règles clés établies pendant les tests :
 
 ## Dernière mise à jour
 
-2025-12-28 - Effet Ambilight (anti-banding CSS), mise à jour agents CLAUDE.md
+2025-12-28 - Refonte système catégories : multi-tags, 20 catégories thématiques, frontmatter YAML

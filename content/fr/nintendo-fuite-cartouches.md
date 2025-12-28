@@ -1,3 +1,7 @@
+---
+category: nintendo
+---
+
 # Switch 2 : une fuite révèle les nouvelles cartouches 128 Go
 
 **Un studio tiers a malencontreusement annoncé l'arrivée de nouvelles cartouches 128 Go pour la Nintendo Switch 2. Le communiqué a été supprimé 4 minutes plus tard. Le community manager n'a plus donné signe de vie depuis.**

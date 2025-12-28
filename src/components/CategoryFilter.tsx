@@ -21,7 +21,8 @@ interface Article {
   title: string
   excerpt: string
   content: string
-  category: Category
+  tags: Category[]
+  category: Category // Premier tag (rétrocompatibilité)
   image?: string
   date: string
 }
@@ -38,14 +39,15 @@ export default function CategoryFilter({ articlesFr, articlesEn }: CategoryFilte
   // Select articles based on locale, fallback to French if English not available
   const articles = locale === 'en' && articlesEn.length > 0 ? articlesEn : articlesFr
 
-  // Catégories présentes dans les articles
+  // Catégories présentes dans les articles (basé sur tous les tags)
   const availableCategories = allCategories.filter(cat =>
-    articles.some(article => article.category === cat)
+    articles.some(article => article.tags.includes(cat))
   )
 
+  // Filtrage : article affiché si au moins 1 tag matche
   const filteredArticles = activeCategory === 'all'
     ? articles
-    : articles.filter(article => article.category === activeCategory)
+    : articles.filter(article => article.tags.includes(activeCategory))
 
   const [featured, ...rest] = filteredArticles
 
