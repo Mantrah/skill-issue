@@ -138,9 +138,10 @@ CREATE TABLE categories (
 
 ### GamepadDecorations
 Composant décoratif qui encadre les images d'articles dans un style "console de jeu" :
-- **D-pad** (gauche) : Croix directionnelle SVG avec gradient rouge
+- **D-pad** (gauche) : Croix directionnelle SVG avec gradient rouge, **interactif** (React state pour animation press)
 - **Boutons** (droite) : 2 boutons gris en diagonale
 - **Console** : Background gradient gris foncé, bordure accent rouge, coins arrondis (rounded-3xl)
+- **Interactivité** : `useState<Direction>` pour gérer l'état pressé, support mouse + touch events
 
 ### Règles d'affichage des images
 Pour les images featured et article page :
@@ -159,8 +160,39 @@ Pour les images featured et article page :
 />
 ```
 
-### Effet Ambilight
-Le hook `useAmbientColor` extrait la couleur dominante de l'image d'article et l'applique en fond subtil sur la page article, créant un effet d'immersion.
+### Effet Ambilight (page article uniquement)
+Le hook `useAmbientColor` extrait la couleur dominante de l'image d'article et l'applique en fond subtil **sur la page article**, créant un effet d'immersion contextuel.
+
+### Homepage Background
+La homepage utilise un **gradient statique** pour une cohérence visuelle :
+- Gradient horizontal : rouge sombre à gauche (`#2a1515`), fond neutre au centre (`#121212`), gris clair à droite (`#252525`)
+- Raison : éviter un effet arbitraire basé sur le premier article
+- Implémenté dans `HomePageClient.tsx`
+
+### Layout Homepage (style Kotaku)
+Structure responsive inspirée des sites gaming :
+- **Featured article** : Grande carte avec GamepadDecorations
+- **Sidebar desktop** : Liste "Most Commented" + emplacements pubs (300x250 + 300x600 sticky)
+- **Mobile** : Pub inline 300x250 après le 2ème article
+
+### Section "Most Commented"
+- Affiche 5 articles avec compteurs likes/commentaires
+- Utilise `seededRandom(slug)` pour générer des valeurs déterministes (évite hydration errors)
+- Style compact avec miniatures et métadonnées
+
+### Header
+- **Logo** : GamepadIcon SVG inline (manette outline rouge)
+- **Texte** : "SKILL" (accent) + "ISSUE" (foreground)
+- **Tagline** : "L'actu gaming qu'on mérite (ou pas)"
+
+### Favicon (icon.svg)
+- Fond sombre `#1a1a1a` (aligné avec header-bg)
+- Manette outline rouge `#dc2626` (accent)
+- Cohérence visuelle avec le header
+
+### ArticleCard
+- **Featured** : aspect-auto, image pleine hauteur
+- **Preview** : aspect-[16/9], `object-cover object-top` pour préserver les logos en haut d'image
 
 ## Dépendances principales
 

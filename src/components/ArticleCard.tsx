@@ -3,7 +3,6 @@ import Image from 'next/image'
 import { categoryConfig, type Category } from '@/lib/categories'
 import { formatDateLocale, type Locale } from '@/lib/i18n'
 import ImagePlaceholder from './ImagePlaceholder'
-import GamepadDecorations from './GamepadDecorations'
 
 interface Article {
   slug: string
@@ -29,25 +28,19 @@ export default function ArticleCard({ article, featured = false, locale = 'fr' }
       <article className="group bg-card border border-card-border rounded-xl overflow-hidden hover:border-accent/30 transition-colors">
         <Link href={`/article/${article.slug}`} className="block">
           {article.image ? (
-            <div className="relative w-full aspect-[2.5/1]">
-              <GamepadDecorations />
-              {/* Zone écran centrale - 50% au milieu avec bordure */}
-              <div className="absolute inset-0 flex items-center justify-center z-10 p-2">
-                <div className="w-[60%] h-full border-2 border-black rounded-sm bg-black overflow-hidden flex items-center">
-                  <Image
-                    src={article.image}
-                    alt={article.title}
-                    width={1920}
-                    height={1080}
-                    className="w-full h-auto"
-                  />
-                </div>
-              </div>
+            <div className="w-full">
+              <Image
+                src={article.image}
+                alt={article.title}
+                width={1920}
+                height={1080}
+                className="w-full h-auto"
+              />
             </div>
           ) : (
             <ImagePlaceholder
               category={article.category}
-              className="w-full aspect-[2.5/1]"
+              className="w-full aspect-[16/9]"
             />
           )}
           <div className="p-5">
@@ -76,21 +69,21 @@ export default function ArticleCard({ article, featured = false, locale = 'fr' }
     <article className="group bg-card border border-card-border rounded-xl overflow-hidden hover:border-accent/30 transition-colors">
       <Link href={`/article/${article.slug}`} className="flex flex-col sm:flex-row">
         {article.image ? (
-          <div className="relative w-full sm:w-48 h-32 sm:h-full min-h-[120px] flex-shrink-0">
+          <div className="relative w-full sm:w-5/12 aspect-[16/9] sm:aspect-auto sm:min-h-[140px] flex-shrink-0">
             <Image
               src={article.image}
               alt={article.title}
               fill
-              className="object-cover object-[50%_25%]"
+              className="object-cover object-top"
             />
           </div>
         ) : (
           <ImagePlaceholder
             category={article.category}
-            className="w-full sm:w-48 h-32 sm:h-full min-h-[120px] flex-shrink-0"
+            className="w-full sm:w-5/12 aspect-[16/9] sm:aspect-auto sm:min-h-[140px] flex-shrink-0"
           />
         )}
-        <div className="p-4 flex flex-col justify-center">
+        <div className="p-4 flex-1 flex flex-col justify-center">
           <div className="flex items-center gap-2 mb-2">
             <span
               className="inline-block w-fit px-2 py-0.5 text-xs font-semibold rounded"
@@ -103,7 +96,7 @@ export default function ArticleCard({ article, featured = false, locale = 'fr' }
           <h2 className="text-base font-semibold leading-snug text-foreground group-hover:text-accent transition-colors line-clamp-2">
             {article.title}
           </h2>
-          <p className="mt-2 text-sm text-muted line-clamp-2 hidden sm:block">
+          <p className="mt-2 text-sm text-muted line-clamp-2">
             {article.excerpt}
           </p>
         </div>

@@ -1,6 +1,6 @@
 # Assassin's Creed Shadows reçoit des critiques positives malgré les reports
 
-*Le jeu, sorti en mars 2025 après trois reports, a finalement reçu des critiques favorables. Le département communication d'Ubisoft ne sait plus comment réagir à une bonne nouvelle.*
+**Le jeu, sorti en mars 2025 après trois reports, a finalement reçu des critiques favorables. Le département communication d'Ubisoft ne sait plus comment réagir à une bonne nouvelle.**
 
 C'est une situation inédite pour Ubisoft : Assassin's Creed Shadows, sorti le 20 mars 2025 après avoir été reporté de novembre 2024 à février 2025, puis à mars 2025, a été bien accueilli par la critique avec un score de 82% sur OpenCritic. Dans les bureaux de Montreuil, personne n'avait prévu ce scénario.
 

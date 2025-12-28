@@ -18,6 +18,7 @@ export interface Article {
 
 // Dates mockées (sera remplacé par la DB plus tard)
 const articleDates: Record<string, string> = {
+  'palworld-joueurs-realisation': '2025-12-26',
   'ubisoft-ac-shadows': '2025-12-24',
   'ea-fc25-microtransactions': '2025-12-23',
   'nintendo-fuite-cartouches': '2025-12-22',

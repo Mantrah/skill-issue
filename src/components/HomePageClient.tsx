@@ -2,14 +2,15 @@
 
 import CategoryFilter from '@/components/CategoryFilter'
 import { useLanguage } from '@/contexts/LanguageContext'
-import { useAmbientColor } from '@/hooks/useAmbientColor'
+import { type Category } from '@/lib/categories'
 
 interface Article {
   slug: string
   title: string
   excerpt: string
+  content: string
   date: string
-  category: string
+  category: Category
   image?: string
 }
 
@@ -19,19 +20,17 @@ interface HomePageClientProps {
 }
 
 export default function HomePageClient({ articlesFr, articlesEn }: HomePageClientProps) {
-  const { language } = useLanguage()
+  const { locale } = useLanguage()
 
-  // Prendre le premier article selon la langue
-  const articles = language === 'fr' ? articlesFr : articlesEn
-  const firstArticleImage = articles[0]?.image
-
-  // Effet Ambilight basé sur l'image du premier article
-  const { ambientStyle } = useAmbientColor(firstArticleImage)
+  // Gradient statique : rouge à gauche, blanc à droite
+  const staticGradientStyle = {
+    background: 'linear-gradient(90deg, #2a1515 0%, #121212 35%, #121212 65%, #252525 100%)',
+  }
 
   return (
     <div
-      className="min-h-screen transition-all duration-1000 ease-out"
-      style={ambientStyle}
+      className="min-h-screen"
+      style={staticGradientStyle}
     >
       <div className="max-w-5xl mx-auto px-4 py-8">
         <CategoryFilter articlesFr={articlesFr} articlesEn={articlesEn} />

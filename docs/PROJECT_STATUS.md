@@ -57,9 +57,17 @@
 - [x] Design responsive
 - [x] Dark mode (thème sombre par défaut)
 - [x] Bouton signaler (ReportButton)
+- [x] Layout homepage style Kotaku (featured + sidebar)
+- [x] Section "Most Commented" avec seededRandom
+- [x] Système de pubs responsive (mobile inline + sidebar desktop)
+- [x] Fix image cropping (object-top)
+- [x] GamepadDecorations D-pad interactif (press animation)
+- [x] Logo header manette SVG
+- [x] Alignement favicon/header (fond sombre + manette outline)
+- [x] Gradient statique homepage (rouge/noir/gris)
 - [ ] Tests de performance
 
-## Articles validés (5)
+## Articles validés (6)
 
 | Fichier | Sujet | Status |
 |---------|-------|--------|
@@ -85,4 +93,4 @@ Règles clés établies pendant les tests :
 
 ## Dernière mise à jour
 
-2025-12-27 - Ajout GamepadDecorations, effet Ambilight, mise à jour documentation
+2025-12-28 - Layout Kotaku, Most Commented, pubs mobile, D-pad interactif, alignement favicon/header
