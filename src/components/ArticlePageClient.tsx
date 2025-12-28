@@ -69,10 +69,7 @@ export default function ArticlePageClient({
   const { ambientStyle } = useAmbientColor(article.image)
 
   return (
-    <div
-      className="min-h-screen transition-all duration-1000 ease-out"
-      style={ambientStyle}
-    >
+    <div className="min-h-screen transition-all duration-1000 ease-out" style={ambientStyle}>
       <div className="max-w-4xl mx-auto px-4 py-8">
       <Link
         href="/"
@@ -87,7 +84,7 @@ export default function ArticlePageClient({
           {article.image ? (
             <div className="relative w-full aspect-[3/1] rounded-xl overflow-hidden mb-6">
               <GamepadDecorations />
-              {/* Zone écran centrale - 50% au milieu avec bordure */}
+              {/* Zone écran centrale - 60% au milieu avec bordure */}
               <div className="absolute inset-0 flex items-center justify-center z-10 p-2">
                 <div className="w-[60%] h-full border-2 border-black rounded-sm bg-black overflow-hidden flex items-center">
                   <Image

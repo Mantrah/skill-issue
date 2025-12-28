@@ -161,13 +161,41 @@ Pour les images featured et article page :
 ```
 
 ### Effet Ambilight (page article uniquement)
-Le hook `useAmbientColor` extrait la couleur dominante de l'image d'article et l'applique en fond subtil **sur la page article**, créant un effet d'immersion contextuel.
+Le hook `useAmbientColor` extrait la couleur dominante de l'image d'article et applique un gradient radial sur le fond de la page article, créant un effet d'immersion contextuel.
 
-### Homepage Background
-La homepage utilise un **gradient statique** pour une cohérence visuelle :
-- Gradient horizontal : rouge sombre à gauche (`#2a1515`), fond neutre au centre (`#121212`), gris clair à droite (`#252525`)
-- Raison : éviter un effet arbitraire basé sur le premier article
-- Implémenté dans `HomePageClient.tsx`
+**Fichiers** :
+- `src/hooks/useAmbientColor.ts` - Extraction couleur + génération du style
+- `src/components/ArticlePageClient.tsx` - Applique `ambientStyle` sur le div principal (ligne 72)
+
+**Technique d'extraction** :
+- Canvas 50x50 pour échantillonnage rapide
+- Moyenne RGB avec exclusion des pixels trop sombres/clairs (30-225)
+- Boost saturation x1.8 et assombrissement x0.45 pour rendu subtil
+
+**Gradient appliqué** :
+```tsx
+// Position verticale configurable via le paramètre verticalPosition
+background: `radial-gradient(ellipse 80% 50% at 50% ${verticalPosition}%, ${ambientColor} 0%, var(--background) 70%)`
+```
+
+**Positions par page** :
+- Page article : 8% (aligné sur l'écran de GamepadDecorations)
+- Homepage : 18% (centré sur image + titre de l'article featured)
+
+**Anti-banding CSS** :
+Les gradients vers `transparent` créent du "banding" (bandes visibles) car `transparent` = `rgba(0,0,0,0)` (noir transparent).
+
+**Solution** : Toujours transitionner vers `var(--background)` au lieu de `transparent`.
+
+```tsx
+// ❌ Banding visible
+background: `radial-gradient(... ${color} 0%, transparent 70%)`
+
+// ✅ Dégradé lisse
+background: `radial-gradient(... ${color} 0%, var(--background) 70%)`
+```
+
+**Note future** : L'effet actuel est un gradient centré. Une itération future pourrait implémenter un "vrai ambilight" avec émission depuis les bords de l'écran.
 
 ### Layout Homepage (style Kotaku)
 Structure responsive inspirée des sites gaming :

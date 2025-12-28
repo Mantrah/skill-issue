@@ -5,20 +5,20 @@ import { useState, useEffect, useRef } from 'react'
 interface AmbientColorOptions {
   saturationBoost?: number
   darkenFactor?: number
-  gradientEnd?: number
+  verticalPosition?: number // Position verticale du gradient en % (défaut: 8)
 }
 
 const defaultOptions: Required<AmbientColorOptions> = {
   saturationBoost: 1.8,
   darkenFactor: 0.45,
-  gradientEnd: 67,
+  verticalPosition: 8,
 }
 
 export function useAmbientColor(imageUrl: string | undefined, options: AmbientColorOptions = {}) {
   const [ambientColor, setAmbientColor] = useState<string | null>(null)
   const blobUrlRef = useRef<string | null>(null)
 
-  const { saturationBoost, darkenFactor, gradientEnd } = { ...defaultOptions, ...options }
+  const { saturationBoost, darkenFactor, verticalPosition } = { ...defaultOptions, ...options }
 
   useEffect(() => {
     if (!imageUrl) return
@@ -115,13 +115,12 @@ export function useAmbientColor(imageUrl: string | undefined, options: AmbientCo
     }
   }, [imageUrl, saturationBoost, darkenFactor])
 
-  const ambientStyle = {
-    backgroundImage: ambientColor
-      ? `linear-gradient(180deg, ${ambientColor} 0%, var(--background) ${gradientEnd}%)`
-      : 'none',
-    backgroundColor: 'var(--background)',
-    backgroundAttachment: 'fixed' as const,
-  }
+  // Style ambilight : gradient sur le fond de la page, position verticale configurable
+  const ambientStyle = ambientColor
+    ? {
+        background: `radial-gradient(ellipse 80% 50% at 50% ${verticalPosition}%, ${ambientColor} 0%, var(--background) 70%)`,
+      }
+    : { background: 'var(--background)' }
 
   return { ambientColor, ambientStyle }
 }

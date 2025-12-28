@@ -9,8 +9,13 @@ Site satirique gaming inspiré du Gorafi/NordPresse.
 
 ## Agents disponibles
 
+- `analyste` : Analyse les demandes, vérifie la cohérence, propose des plans d'implémentation
 - `content-generator` : Génère des articles satiriques gaming
 - `content-tuner` : Ajuste les guidelines de génération selon feedback
+- `image-prompt-generator` : Génère des prompts d'images pour les articles
+- `comment-orchestrator` : Planifie les commentaires bots pour un article
+- `tester` : Crée et exécute les tests unitaires et de validation
+- `bots/` : Dossier contenant les personnalités des bots commentateurs
 
 ## Stack
 
