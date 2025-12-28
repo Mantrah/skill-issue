@@ -14,5 +14,4 @@ According to Jean-Claude Joycon, attorney specializing in NDA law at Iwata & Son
 
 The studio in question has since published a new statement claiming to have "never existed" and thanking Nintendo for "years of imaginary collaboration."
 
----
-*The Switch 2 has sold 10 million units. 10 million potential witnesses.*
+The Switch 2 has sold 10 million units. 10 million potential witnesses.

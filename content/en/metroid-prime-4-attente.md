@@ -14,5 +14,4 @@ A study commissioned by the National Gaming Research Institute reveals that 67% 
 
 Nintendo responded with its usual tact by issuing a laconic statement: "We thank our fans for their patience. For those who passed away in the meantime, a tribute edition will be available for $79.99, funeral DLC not included." The Japanese company also specified that development of Metroid Prime 5 would begin "soon," immediately causing the hospitalization of 1,200 gamers for anxiety attacks.
 
----
-*Meanwhile, Half-Life 3 fans continue to stare into the void.*
+Meanwhile, Half-Life 3 fans continue to stare into the void.

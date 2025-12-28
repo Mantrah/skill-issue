@@ -31,7 +31,11 @@
           "imageUrl": {
             "type": "string",
             "format": "uri",
-            "description": "URL de l'image source (Wikimedia, etc.)"
+            "description": "URL de l'image source (Wikimedia, AI, etc.)"
+          },
+          "localImage": {
+            "type": "string",
+            "description": "Chemin local de l'image téléchargée (/images/slug.ext)"
           },
           "date": {
             "type": "string",
@@ -40,8 +44,20 @@
           },
           "status": {
             "type": "string",
-            "enum": ["pending", "approved", "rejected", "published"],
+            "enum": ["pending", "approved", "rejected", "published", "needs_correction"],
             "description": "Statut dans le workflow"
+          },
+          "correction": {
+            "type": "object",
+            "description": "Demande de correction (quand status = needs_correction)",
+            "properties": {
+              "prompt": { "type": "string", "description": "Instructions de correction" },
+              "requestedAt": { "type": "string", "format": "date-time" }
+            }
+          },
+          "rejectedReason": {
+            "type": "string",
+            "description": "Raison du rejet (quand status = rejected)"
           },
           "createdAt": {
             "type": "string",

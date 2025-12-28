@@ -14,5 +14,4 @@ Une étude commandée par le CNRS révèle que 67% des fans de Metroid Prime ont
 
 Nintendo a réagi avec son tact habituel en publiant un communiqué laconique : "Nous remercions les fans pour leur patience. Pour ceux qui sont décédés entre-temps, une édition hommage sera disponible au prix de 79,99€, DLC funéraire non inclus." La firme japonaise a également précisé que le développement de Metroid Prime 5 débuterait "prochainement", provoquant l'hospitalisation immédiate de 1 200 joueurs pour crises d'angoisse.
 
----
-*Pendant ce temps, les fans de Half-Life 3 continuent de fixer le vide.*
+Pendant ce temps, les fans de Half-Life 3 continuent de fixer le vide.

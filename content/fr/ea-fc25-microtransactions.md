@@ -14,5 +14,4 @@ Selon le Dr. Heinrich Lootbox, économiste comportemental à l'Université de La
 
 EA a réagi dans un communiqué : "Nous offrons aux joueurs la liberté de choisir comment ils veulent progresser. Lentement et gratuitement, ou rapidement et à leurs frais. C'est ça, la démocratie." Le communiqué précise également que le Season Pass de la Saison 8 proposera "encore plus de contenu à débloquer", dont "la possibilité de voir les buts en replay sans payer".
 
----
-*En Corée du Sud aussi, les FC Points sont interdits. Les deux seuls pays au monde où les joueurs de FIFA ont encore un compte bancaire positif.*
+En Corée du Sud aussi, les FC Points sont interdits. Les deux seuls pays au monde où les joueurs de FIFA ont encore un compte bancaire positif.

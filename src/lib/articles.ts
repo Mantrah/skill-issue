@@ -18,7 +18,9 @@ export interface Article {
   date: string
 }
 
-// Dates mockées (sera remplacé par la DB plus tard)
+// Dates des articles publiés (sera remplacé par la DB plus tard)
+// IMPORTANT: Seuls les articles listés ici sont visibles sur le site public
+// Les articles sans date sont considérés comme "drafts" et ne s'affichent pas
 const articleDates: Record<string, string> = {
   'palworld-joueurs-realisation': '2025-12-26',
   'ubisoft-ac-shadows': '2025-12-24',
@@ -164,13 +166,18 @@ export function getAllArticles(locale: Locale = defaultLocale): Article[] {
   const fileNames = fs.readdirSync(contentDirectory)
   const articles = fileNames
     .filter(fileName => fileName.endsWith('.md'))
+    .filter(fileName => {
+      // Seuls les articles avec une date explicite sont publiés
+      const slug = fileName.replace(/\.md$/, '')
+      return slug in articleDates
+    })
     .map(fileName => {
       const slug = fileName.replace(/\.md$/, '')
       const fullPath = path.join(contentDirectory, fileName)
       const fileContent = fs.readFileSync(fullPath, 'utf8')
       const { title, excerpt, content, tags } = parseArticle(slug, fileContent)
       const image = findImage(slug)
-      const date = articleDates[slug] || '2025-01-01'
+      const date = articleDates[slug]
 
       return { slug, title, excerpt, content, tags, category: tags[0], image, date }
     })
@@ -180,6 +187,11 @@ export function getAllArticles(locale: Locale = defaultLocale): Article[] {
 }
 
 export function getArticleBySlug(slug: string, locale: Locale = defaultLocale): Article | null {
+  // Vérifie que l'article est publié (a une date explicite)
+  if (!(slug in articleDates)) {
+    return null
+  }
+
   const contentDirectory = getContentDirectory(locale)
   const fullPath = path.join(contentDirectory, `${slug}.md`)
 
@@ -190,7 +202,7 @@ export function getArticleBySlug(slug: string, locale: Locale = defaultLocale): 
   const fileContent = fs.readFileSync(fullPath, 'utf8')
   const { title, excerpt, content, tags } = parseArticle(slug, fileContent)
   const image = findImage(slug)
-  const date = articleDates[slug] || '2025-01-01'
+  const date = articleDates[slug]
 
   return { slug, title, excerpt, content, tags, category: tags[0], image, date }
 }
@@ -204,4 +216,5 @@ export function getAllSlugs(locale: Locale = defaultLocale): string[] {
   return fs.readdirSync(contentDirectory)
     .filter(fileName => fileName.endsWith('.md'))
     .map(fileName => fileName.replace(/\.md$/, ''))
+    .filter(slug => slug in articleDates) // Seuls les articles publiés
 }

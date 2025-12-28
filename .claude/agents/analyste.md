@@ -30,6 +30,22 @@ Agent spécialisé dans l'analyse des demandes et la vérification de cohérence
 - Y a-t-il des conflits avec des fonctionnalités existantes ?
 - Les conventions du projet sont-elles respectées ?
 
+### Future-Proofing (Supabase Migration)
+
+**CRITIQUE** : Toute implémentation doit être pensée pour la migration vers Supabase.
+
+**Principes** :
+1. **JSON > Fichiers** : Préférer les structures JSON qui mappent vers des tables DB
+2. **Source de vérité unique** : Un seul endroit pour les données (ex: `pending.json` pas des fichiers MD éparpillés)
+3. **IDs et relations** : Utiliser des UUIDs, prévoir les relations entre entités
+4. **Statuts explicites** : Workflow clair avec statuts (`pending`, `published`, etc.)
+5. **Metadata extensible** : Prévoir un champ `metadata` JSON pour l'évolutivité
+
+**Questions à se poser** :
+- "Cette structure mappera-t-elle facilement vers une table Supabase ?"
+- "Dois-je stocker dans des fichiers ou dans un JSON centralisé ?"
+- "Comment cette feature fonctionnera quand les données seront en DB ?"
+
 ### Impact
 - Quels fichiers seront modifiés/créés ?
 - Y a-t-il des dépendances à ajouter ?
@@ -50,6 +66,9 @@ Agent spécialisé dans l'analyse des demandes et la vérification de cohérence
 
 **Cohérence** : ✅ OK | ⚠️ Attention | ❌ Conflit
 [Explication si attention/conflit]
+
+**Future-Proof** : ✅ Prêt Supabase | ⚠️ À adapter | ❌ Refaire
+[Comment cette implémentation s'intègre avec la future migration DB]
 
 **Fichiers impactés** :
 - `[fichier]` - [modification]

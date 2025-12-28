@@ -52,6 +52,10 @@ export default function Header() {
               <span className="text-muted/50 cursor-not-allowed">
                 {t.about}
               </span>
+              {/* TODO: Masquer quand auth sera implémentée */}
+              <Link href="/admin" className="text-accent/70 hover:text-accent transition-colors">
+                Admin
+              </Link>
             </nav>
             <LanguageToggle />
           </div>

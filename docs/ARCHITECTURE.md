@@ -10,6 +10,22 @@
 | Hébergement | Vercel | Gratuit, intégration Next.js parfaite |
 | Auth | Supabase Auth | Google/Meta OAuth gratuit |
 
+## Principes de développement
+
+### Future-Proofing (Migration Supabase)
+
+**Règle fondamentale** : Toute implémentation doit être conçue pour faciliter la migration vers Supabase.
+
+| Principe | Explication |
+|----------|-------------|
+| **JSON > Fichiers** | Préférer les structures JSON qui mappent vers des tables DB |
+| **Source unique** | Une seule source de vérité pour chaque type de donnée |
+| **UUIDs** | Utiliser des identifiants uniques préparés pour la DB |
+| **Statuts explicites** | Workflow clair (`pending`, `published`, etc.) |
+| **Metadata extensible** | Champ `metadata` JSON pour l'évolutivité |
+
+**Exemple concret** : Le système de drafts utilise `/drafts/pending.json` avec une structure identique à la future table `articles` de Supabase. La migration se fera par simple import JSON → PostgreSQL.
+
 ## Hébergement
 
 - **Domaine initial** : skillissue.vercel.app (gratuit)
@@ -65,7 +81,10 @@ skill-issue/
 │   │   └── utils.ts
 │   └── types/
 │       └── index.ts
-├── content/                          # Articles markdown (phase test)
+├── content/                          # Articles publiés (markdown)
+├── drafts/                           # Staging articles (JSON)
+│   ├── pending.json                  # Articles en attente de validation
+│   └── schema.json                   # Schéma JSON pour validation
 ├── public/
 │   └── images/
 ├── supabase/

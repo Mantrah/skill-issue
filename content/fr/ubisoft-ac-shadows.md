@@ -14,5 +14,4 @@ Côté finances, la situation reste tendue. L'action Ubisoft a atteint son nivea
 
 Tencent aurait manifesté son intérêt pour un rachat. Un cadre d'Ubisoft, interrogé sur cette possibilité, aurait répondu : "On reste ouverts à toutes les discussions qui nous permettraient de continuer à reporter des jeux sereinement." Le DLC Claws of Awaji, sorti en septembre, a ajouté 10 heures de contenu. Un joueur a calculé que cela représentait "moins de temps que les reports cumulés".
 
----
-*La version Nintendo Switch 2, sortie le 2 décembre, n'a été reportée qu'une seule fois. Un record interne célébré avec un mail de félicitations de 47 destinataires.*
+La version Nintendo Switch 2, sortie le 2 décembre, n'a été reportée qu'une seule fois. Un record interne célébré avec un mail de félicitations de 47 destinataires.

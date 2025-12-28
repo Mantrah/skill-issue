@@ -20,5 +20,4 @@ Le studio Pocketpair, développeur de Palworld, a célébré les 25 millions de 
 
 Une pétition en ligne demandant à Game Freak d'ajouter des armes dans le prochain Pokémon a déjà récolté 250 000 signatures, avec pour argument principal : "Si on doit refaire la même chose, autant que Pikachu ait un Glock."
 
----
-*Pendant ce temps, un joueur vient de passer 6 heures à construire un ranch automatisé et jure que "c'est totalement différent d'une ferme Pokémon".*
+Pendant ce temps, un joueur vient de passer 6 heures à construire un ranch automatisé et jure que "c'est totalement différent d'une ferme Pokémon".

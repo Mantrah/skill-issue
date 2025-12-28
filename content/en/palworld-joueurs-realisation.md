@@ -20,5 +20,4 @@ Pocketpair studio, Palworld's developer, celebrated 25 million players by postin
 
 An online petition asking Game Freak to add weapons to the next Pokémon has already collected 250,000 signatures, with the main argument being: "If we have to do the same thing again, Pikachu might as well have a Glock."
 
----
-*Meanwhile, a player just spent 6 hours building an automated ranch and swears "it's totally different from a Pokémon farm".*
+Meanwhile, a player just spent 6 hours building an automated ranch and swears "it's totally different from a Pokémon farm".

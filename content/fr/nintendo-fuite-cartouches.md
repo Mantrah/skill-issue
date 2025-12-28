@@ -14,5 +14,4 @@ Selon Maître Jean-Claude Joycon, avocat spécialisé en droit du NDA chez Iwata
 
 Le studio concerné a depuis publié un nouveau communiqué affirmant n'avoir "jamais existé" et remerciant Nintendo pour "des années de collaboration imaginaires".
 
----
-*La Switch 2 a écoulé 10 millions d'unités. 10 millions de témoins potentiels.*
+La Switch 2 a écoulé 10 millions d'unités. 10 millions de témoins potentiels.

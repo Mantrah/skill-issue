@@ -14,5 +14,4 @@ On the financial side, the situation remains tense. Ubisoft's stock has reached 
 
 Tencent has reportedly expressed interest in an acquisition. A Ubisoft executive, when asked about this possibility, allegedly responded: "We remain open to any discussions that would allow us to continue delaying games peacefully." The Claws of Awaji DLC, released in September, added 10 hours of content. One player calculated that this represents "less time than the cumulative delays".
 
----
-*The Nintendo Switch 2 version, released on December 2, was only delayed once. An internal record celebrated with a congratulatory email sent to 47 recipients.*
+The Nintendo Switch 2 version, released on December 2, was only delayed once. An internal record celebrated with a congratulatory email sent to 47 recipients.
