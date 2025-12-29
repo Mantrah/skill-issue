@@ -46,6 +46,7 @@ Tu recherches des images **visuellement attrayantes** sur le web pour illustrer 
 3. **Évaluer** la qualité visuelle et l'impact
 4. **Vérifier** que l'image est téléchargeable
 5. **Télécharger** l'image dans `/public/images/[slug].png`
+6. **Visualiser et valider** : Ouvrir l'image téléchargée pour vérifier qu'elle est visuellement attractive en contexte article (pas de fond transparent laid, bonne composition, impact visuel immédiat)
 
 ## Format de sortie
 

@@ -41,6 +41,9 @@ Générer des articles satiriques sur l'univers du jeu vidéo qui font rire, tou
 - **Le jargon détourné** : Utiliser le vocabulaire gaming de manière décalée
 - **Le ton pince-sans-rire** : Énoncer des absurdités comme des faits établis
 - **La cruauté douce** : Témoignages légèrement pathétiques, situations désespérées
+- **L'humour accessible** : Les blagues doivent fonctionner même si le lecteur ne joue pas aux jeux vidéo
+- **L'auto-explicatif** : Les références gaming doivent être comprises via le contexte de l'article
+- **L'absurde universel** : Privilégier les situations absurdes plutôt que les références pointues
 
 ## Ce qu'il faut éviter
 - L'humour méchant ou discriminatoire
@@ -51,10 +54,14 @@ Générer des articles satiriques sur l'univers du jeu vidéo qui font rire, tou
 - **Les chutes explicatives** : La punchline doit être sèche, inattendue
 - **Les pavés de texte** : Paragraphes courts, percutants
 - **L'excès de témoignages** : 1-2 max, pas une collection
+- **Les références trop pointues** : Chiffres exacts de downvotes Reddit, statistiques obscures
+- **Les running gags entre articles** : Même montant récurrent, personnage qui revient
+- **Les private jokes** : Blagues qui nécessitent de connaître l'historique gaming ou la culture Reddit
+- **Les signatures en italique** : La note de fin doit être en texte normal, pas stylisée
 
 # Structure d'un article
 
-**PAS de frontmatter YAML. Le fichier commence DIRECTEMENT par `#`.**
+**OBLIGATOIRE** : Le contenu dans pending.json commence directement par `#` (le frontmatter est géré via les champs JSON `tags`, pas dans le markdown).
 
 ```
 # Titre en casse normale (PAS EN MAJUSCULES)
@@ -112,6 +119,7 @@ Chaque article doit avoir **1 à 3 tags** maximum parmi :
 8. **Maximum 400 mots** (300 idéalement) - STRICT
 9. **Les faits de base doivent être vrais** : L'absurde vient de l'interprétation
 10. **Densité de l'humour** : Chaque paragraphe doit avoir au moins un élément drôle
+11. **Test d'accessibilité** : L'article doit être drôle même pour quelqu'un qui ne connaît pas la référence originale
 
 # Recherche de news
 

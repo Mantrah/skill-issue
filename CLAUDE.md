@@ -7,17 +7,28 @@ Site satirique gaming inspiré du Gorafi/NordPresse.
 - [Architecture technique](./docs/ARCHITECTURE.md)
 - [Suivi du projet](./docs/PROJECT_STATUS.md)
 
+## Skills disponibles
+
+| Skill | Commande | Description |
+|-------|----------|-------------|
+| `analyze` | `/analyze` | Analyse avant toute modification du projet |
+| `implement` | `/implement` | Implémente après validation d'un plan |
+| `create-article` | `/create-article [sujet]` | Orchestre la création d'article (topic → content → image → pending.json) |
+
 ## Agents disponibles
 
-- `analyste` : Analyse les demandes, vérifie la cohérence, propose des plans d'implémentation
-- `topic-finder` : Recherche des sujets d'actualité gaming avec potentiel satirique
-- `content-generator` : Génère des articles satiriques gaming (retourne un format structuré)
-- `article-creator` : Crée les fichiers d'un article validé (markdown FR/EN + image)
-- `content-tuner` : Ajuste les guidelines de génération selon feedback
-- `image-prompt-generator` : Génère des prompts d'images pour les articles
-- `comment-orchestrator` : Planifie les commentaires bots pour un article
-- `tester` : Crée et exécute les tests unitaires et de validation
-- `bots/` : Dossier contenant les personnalités des bots commentateurs
+| Agent | Rôle | Appelé par |
+|-------|------|------------|
+| `analyste` | Analyse demandes, vérifie cohérence | skill `analyze` |
+| `topic-finder` | Recherche sujets d'actualité gaming | skill `create-article` |
+| `content-generator` | Génère articles FR+EN + télécharge image | skill `create-article` |
+| `image-finder` | Recherche image avancée (fallback) | skill `create-article` |
+| `article-creator` | Publie depuis pending.json vers /content | manuel |
+| `content-tuner` | Ajuste guidelines selon feedback | manuel |
+| `image-prompt-generator` | Génère prompts d'images IA | non utilisé |
+| `comment-orchestrator` | Planifie commentaires bots | manuel |
+| `tester` | Tests unitaires et validation | non utilisé |
+| `bots/*` | Personnalités des bots commentateurs | comment-orchestrator |
 
 ## Workflow de création d'article
 
@@ -29,24 +40,54 @@ Les articles passent par `/drafts/pending.json` avant publication :
 - `published` : Publié sur le site
 - `rejected` : Refusé
 
-### Workflow complet
+### Commande rapide
 
-```
-1. topic-finder      → Propose des sujets d'actualité
-2. Validation sujet  → User choisit
-3. content-generator → Retourne JSON article
-4. Orchestrateur     → Ajoute à pending.json (status: pending)
-5. Validation        → User visualise et valide
-6. article-creator   → Publie (fichiers + status: published)
+```bash
+/create-article                    # Recherche auto de sujet
+/create-article FaZe Clan exodus   # Avec sujet fourni
 ```
 
-### Workflow court (avec sujet fourni)
+### Workflow orchestré par le skill
 
 ```
-1. content-generator → Retourne JSON article
-2. Orchestrateur     → Ajoute à pending.json
-3. Validation        → User visualise et valide
-4. article-creator   → Publie
+┌─────────────────────────────────────────┐
+│         /create-article [sujet]          │
+└─────────────────────────────────────────┘
+                    │
+      ┌─────────────┴─────────────┐
+      ▼                           ▼
+┌───────────┐              ┌───────────┐
+│  Sujet    │              │ Recherche │
+│  fourni   │              │   auto    │
+└─────┬─────┘              └─────┬─────┘
+      │                          │
+      │                   [topic-finder]
+      │                          │
+      │                   Auto-select (1er)
+      │                          │
+      └──────────┬───────────────┘
+                 ▼
+        [content-generator]
+           │
+           ▼
+    Image trouvée ?
+     │         │
+    Oui       Non
+     │         │
+     │    [image-finder]
+     │         │
+     └────┬────┘
+          ▼
+   pending.json ✓
+          │
+          ▼
+  User valide (/admin)
+          │
+          ▼
+   [article-creator]
+          │
+          ▼
+     Publié ✓
 ```
 
 ### Structure JSON article

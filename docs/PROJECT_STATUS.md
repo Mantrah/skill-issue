@@ -88,11 +88,49 @@ Règles clés établies pendant les tests :
 - **Ton pince-sans-rire** : Énoncer l'absurde comme des faits
 - **Cruauté douce** : Témoignages pathétiques, contraste ton neutre
 
+## Skills - Orchestration
+
+| Skill | Commande | Status | Description |
+|-------|----------|--------|-------------|
+| analyze | `/analyze` | ✅ Actif | Analyse avant modification |
+| implement | `/implement` | ✅ Actif | Implémente après validation |
+| create-article | `/create-article` | ✅ Actif | Orchestre création d'article |
+
+## Agents - État d'utilisation
+
+| Agent | Status | Appelé par | Notes |
+|-------|--------|------------|-------|
+| analyste | ✅ Actif | skill `analyze` | Vérifie cohérence projet |
+| topic-finder | ✅ Actif | skill `create-article` | Recherche sujets d'actualité |
+| content-generator | ✅ Actif | skill `create-article` | Génère articles FR+EN |
+| image-finder | ✅ Actif | skill `create-article` | Fallback si image manquante |
+| article-creator | ✅ Actif | manuel | Publie depuis pending.json |
+| content-tuner | ✅ Actif | manuel | Ajuste guidelines |
+| image-prompt-generator | ⏳ Non utilisé | - | Prévu pour génération IA |
+| tester | ⏳ Non utilisé | - | Tests unitaires |
+| bots/* | ✅ Actifs | comment-orchestrator | Commentateurs automatiques |
+
 ## À noter pour plus tard
 
 - Prévoir agent "content-checker" pour détecter répétitions entre articles (nécessite MCP + DB)
 - Domaine skillissue.gg (~50€/an) quand le site sera prêt
+- Intégrer image-prompt-generator quand outil de génération IA disponible
+
+## Troubleshooting
+
+### Erreur Turbopack "Failed to write app endpoint /page"
+
+**Symptôme** : Next.js crash avec une erreur Turbopack fatale au chargement de la page.
+
+**Cause** : Un fichier nommé `nul` existe à la racine du projet. Sur Windows, `nul` est un nom réservé (équivalent de `/dev/null` sur Unix) et ne peut pas être lu comme un fichier normal.
+
+**Solution** : Supprimer le fichier `nul` à la racine du projet, puis redémarrer le serveur.
+
+```bash
+# Windows - supprimer le fichier réservé
+del "\\?\C:\chemin\vers\projet\nul"
+```
 
 ## Dernière mise à jour
 
-2025-12-28 - Refonte système catégories : multi-tags, 20 catégories thématiques, frontmatter YAML
+2025-12-29 - Troll face curseur sur bouton Signaler, doc troubleshooting

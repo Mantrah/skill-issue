@@ -34,10 +34,10 @@
         "aaa",
         "industry"
       ],
-      "imageUrl": "https://fifplay.com/img/public/fc-25-cover-standard.jpg",
+      "imageUrl": "https://drop-assets.ea.com/images/70izRVxvSGqeqrqJM6nfrm/ab0f5fafc2682ba80adafea80fa9430e/MONUMENTAL_AUG29_16X9_WM-web.jpg",
       "localImage": "/images/ea-rachat-arabie-saoudite.jpg",
       "date": "2025-12-28",
-      "status": "pending",
+      "status": "rejected",
       "createdAt": "2025-12-28T15:30:00Z",
       "fr": {
         "title": "L'Arabie Saoudite rachète EA : les joueurs de FIFA découvrent qu'ils finançaient un LBO depuis 2009",
@@ -51,7 +51,34 @@
         "sourceUrl": "https://www.bloomberg.com/news/articles/2025-09-29/ea-saudi-acquisition",
         "sourceName": "Bloomberg"
       },
-      "updatedAt": "2025-12-28T21:12:58.294Z"
+      "updatedAt": "2025-12-29T10:50:34.732Z",
+      "rejectedReason": "Rejeté manuellement"
+    },
+    {
+      "id": "b7c8d9e0-f1a2-3b4c-5d6e-7f8a9b0c1d2e",
+      "slug": "cod-black-ops-7-ia-six-doigts",
+      "tags": [
+        "fps",
+        "aaa"
+      ],
+      "imageUrl": "https://4kwallpapers.com/images/wallpapers/call-of-duty-black-ops-7-key-art-2025-games-3840x2160-22670.jpg",
+      "localImage": "/images/cod-black-ops-7-ia-six-doigts.jpg",
+      "date": "2025-12-29",
+      "status": "approved",
+      "createdAt": "2025-12-29T12:00:00Z",
+      "fr": {
+        "title": "Activision confirme l'usage d'IA pour Call of Duty: Black Ops 7, les mains à six doigts désormais une feature",
+        "content": "# Activision confirme l'usage d'IA pour Call of Duty: Black Ops 7, les mains à six doigts désormais une feature\n\n**Activision a officiellement reconnu l'utilisation d'outils d'IA générative pour créer certains assets de Black Ops 7. Les joueurs ont repéré des personnages avec six doigts dans les cartes d'appel et l'artwork de campagne.**\n\nDeux heures après le lancement de Call of Duty: Black Ops 7 le 14 novembre, Reddit explosait déjà. Des joueurs partageaient des screenshots de cartes d'appel style Studio Ghibli avec un léger souci anatomique : personnages à six doigts, yeux désalignés, objets vaguement définis. Les signes classiques de l'art généré par IA.\n\nActivision a répondu avec un communiqué d'une transparence rafraîchissante : \"Notre équipe utilise des outils d'IA générative pour aider au développement de certains assets in-game.\" La page Steam du jeu mentionne désormais cette information, probablement en tout petit sous la configuration système requise.\n\n\"Comme beaucoup dans le monde, nous utilisons divers outils numériques, y compris l'IA, pour permettre à nos équipes de créer les meilleures expériences gaming possibles\", précise le statement officiel. \"Notre processus créatif continue d'être mené par les individus talentueux de nos studios.\" On imagine ces individus talentueux en train de cliquer sur \"Générer\" pendant que Midjourney fait le boulot.\n\nCe n'est pas la première fois. Black Ops 6 avait déjà eu droit à son Père Noël zombie hexadactyle l'année dernière. Le développeur Miles Leslie avait alors affirmé que \"tout ce qui entre dans le jeu est touché par l'équipe à cent pour cent\", avant de qualifier l'art IA problématique d'\"accident\". Deux accidents de suite, ça commence à faire un pattern.\n\nSur Steam, les demandes de remboursement se multiplient. Pas tant pour les six doigts que pour le principe. \"J'ai payé 70 balles pour un jeu AAA, pas pour du slop généré en 12 secondes\", écrit Kevin, 26 ans, dans sa review négative. \"Au moins les modders sur DeviantArt assument que c'est de l'IA. Activision fait semblant que c'est du vrai travail d'artiste.\"\n\nDr. Patricia Hernandez, chercheuse en éthique numérique à Stanford, a un avis tranché : \"Quand un éditeur qui génère des milliards de revenus annuels remplace des artistes par des algorithmes, ce n'est pas de l'innovation. C'est de l'optimisation comptable déguisée en progrès technologique.\"\n\nActivision a annoncé qu'un patch correctif arriverait \"bientôt\" pour retirer les assets les plus flagrants. En attendant, la communauté s'amuse : un mod non-officiel ajoute un sixième doigt à TOUS les personnages du jeu \"pour la cohérence artistique\".\n\nLa page Steam précise désormais : \"Ce jeu contient du contenu généré par IA.\" Juste en dessous de \"Contient des micro-transactions\" et au-dessus de \"Nécessite un compte Activision\". Le triptyque parfait du gaming moderne."
+      },
+      "en": {
+        "title": "Activision confirms AI usage for Call of Duty: Black Ops 7, six-fingered hands now a feature",
+        "content": "# Activision confirms AI usage for Call of Duty: Black Ops 7, six-fingered hands now a feature\n\n**Activision has officially acknowledged using generative AI tools to create certain assets in Black Ops 7. Players spotted six-fingered characters in calling cards and campaign artwork.**\n\nTwo hours after Call of Duty: Black Ops 7 launched on November 14, Reddit was already exploding. Players were sharing screenshots of Studio Ghibli-style calling cards with a slight anatomical issue: six-fingered characters, misaligned eyes, vaguely defined objects. The classic telltale signs of AI-generated art.\n\nActivision responded with refreshingly transparent PR-speak: \"Our team uses generative AI tools to help develop some in-game assets.\" The game's Steam page now mentions this information, probably in tiny text below the system requirements.\n\n\"Like so many around the world, we use a variety of digital tools, including AI tools, to empower and support our teams to create the best gaming experiences possible for our players,\" the official statement reads. \"Our creative process continues to be led by the talented individuals in our studios.\" One imagines these talented individuals clicking \"Generate\" while Midjourney does the heavy lifting.\n\nThis isn't the first time. Black Ops 6 already had its hexadactyl zombie Santa last year. Developer Miles Leslie claimed then that \"everything that goes into the game is touched by the team a hundred percent,\" before dismissing the problematic AI art as an \"accident.\" Two accidents in a row starts to look like a pattern.\n\nOn Steam, refund requests are multiplying. Not so much because of the six fingers, but the principle. \"I paid 70 bucks for a AAA game, not for slop generated in 12 seconds,\" writes Kevin, 26, in his negative review. \"At least DeviantArt modders admit when it's AI. Activision pretends it's real artistic work.\"\n\nDr. Patricia Hernandez, digital ethics researcher at Stanford, has a pointed take: \"When a publisher generating billions in annual revenue replaces artists with algorithms, that's not innovation. That's accounting optimization disguised as technological progress.\"\n\nActivision announced a patch will arrive \"soon\" to remove the most flagrant assets. Meanwhile, the community is having fun: an unofficial mod adds a sixth finger to EVERY character in the game \"for artistic consistency.\"\n\nThe Steam page now specifies: \"This game contains AI-generated content.\" Right below \"Contains micro-transactions\" and above \"Requires Activision account.\" The perfect trifecta of modern gaming."
+      },
+      "metadata": {
+        "sourceUrl": "https://kotaku.com/call-of-duty-black-ops-7-ai-art-activision-statement-blops7-steam-ps5-2000644397",
+        "sourceName": "Kotaku"
+      },
+      "updatedAt": "2025-12-29T22:11:54.266Z"
     }
   ]
 }
