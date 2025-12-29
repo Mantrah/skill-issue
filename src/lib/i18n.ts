@@ -5,7 +5,7 @@ export const defaultLocale: Locale = 'fr'
 export const translations = {
   fr: {
     // Header
-    tagline: "L'actu gaming qu'on mérite (ou pas)",
+    tagline: "L'actu gaming qu'on mérite",
     articles: 'Articles',
     about: 'À propos',
 
@@ -61,7 +61,7 @@ export const translations = {
   },
   en: {
     // Header
-    tagline: "The gaming news we deserve (or not)",
+    tagline: "The gaming news we deserve",
     articles: 'Articles',
     about: 'About',
 

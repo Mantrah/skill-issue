@@ -34,8 +34,7 @@ export default function ImagePlaceholder({ category, className = '' }: ImagePlac
 
       {/* Contenu central */}
       <div className="relative text-center z-10" style={{ color: config.color }}>
-        <span className="text-5xl block mb-1">{config.icon}</span>
-        <span className="text-xs font-semibold uppercase tracking-wider">
+        <span className="text-lg font-bold uppercase tracking-wider">
           {config.label}
         </span>
       </div>

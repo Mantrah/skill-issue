@@ -7,21 +7,20 @@ import { useLanguage } from '@/contexts/LanguageContext'
 export default function ReportButton() {
   const { t } = useLanguage()
   const [showMeme, setShowMeme] = useState(false)
+  const [position, setPosition] = useState({ x: 0, y: 0 })
 
-  const handleReport = () => {
-    setShowMeme(true)
-  }
-
-  const closeMeme = () => {
-    setShowMeme(false)
+  const handleMouseMove = (e: React.MouseEvent) => {
+    setPosition({ x: e.clientX, y: e.clientY })
   }
 
   return (
-    <>
-      <button
-        onClick={handleReport}
-        className="flex items-center gap-1.5 text-sm text-muted hover:text-red-500 transition-colors"
-      >
+    <div
+      className={`relative ${showMeme ? 'cursor-none' : 'cursor-pointer'}`}
+      onMouseEnter={() => setShowMeme(true)}
+      onMouseLeave={() => setShowMeme(false)}
+      onMouseMove={handleMouseMove}
+    >
+      <button className={`flex items-center gap-1.5 text-sm text-muted hover:text-red-500 transition-colors ${showMeme ? 'cursor-none' : ''}`}>
         <svg
           className="w-4 h-4"
           viewBox="0 0 24 24"
@@ -37,20 +36,21 @@ export default function ReportButton() {
 
       {showMeme && (
         <div
-          className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 cursor-pointer"
-          onClick={closeMeme}
+          className="fixed pointer-events-none z-50"
+          style={{
+            left: position.x - 16,
+            top: position.y - 16,
+          }}
         >
-          <div className="relative max-w-md w-full mx-4 animate-bounce-in">
-            <Image
-              src="/images/troll-face.png"
-              alt="Problem?"
-              width={400}
-              height={400}
-              className="rounded-lg"
-            />
-          </div>
+          <Image
+            src="/images/troll-face.png"
+            alt="Problem?"
+            width={32}
+            height={32}
+            className="drop-shadow-lg"
+          />
         </div>
       )}
-    </>
+    </div>
   )
 }

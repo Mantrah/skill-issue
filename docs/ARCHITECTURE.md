@@ -230,7 +230,7 @@ Structure responsive inspirée des sites gaming :
 ### Header
 - **Logo** : GamepadIcon SVG inline (manette outline rouge)
 - **Texte** : "SKILL" (accent) + "ISSUE" (foreground)
-- **Tagline** : "L'actu gaming qu'on mérite (ou pas)"
+- **Tagline** : "L'actu gaming qu'on mérite"
 
 ### Favicon (icon.svg)
 - Fond sombre `#1a1a1a` (aligné avec header-bg)

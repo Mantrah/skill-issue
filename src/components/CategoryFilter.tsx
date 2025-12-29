@@ -80,7 +80,7 @@ export default function CategoryFilter({ articlesFr, articlesEn }: CategoryFilte
               }`}
               style={isActive ? { backgroundColor: config.color } : undefined}
             >
-              {config.icon} {label}
+              {label}
             </button>
           )
         })}
