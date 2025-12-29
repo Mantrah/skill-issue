@@ -17,12 +17,15 @@
 
 ### Phase 2 : Auth & Base (Partiel)
 - [ ] Créer projet Supabase
-- [ ] Configurer tables (voir ARCHITECTURE.md)
+- [ ] Configurer tables (voir [DATABASE_SCHEMA.md](./DATABASE_SCHEMA.md))
+- [ ] Migrer pending.json → Supabase
 - [ ] Intégrer Supabase Auth
 - [ ] Configurer OAuth Google
 - [ ] Configurer OAuth Meta/Facebook
 - [ ] Créer middleware d'authentification
 - [ ] Page login/callback
+- [ ] Adapter articles.ts pour lire depuis Supabase
+- [ ] Adapter API /api/articles/action pour écrire dans Supabase
 
 ### Phase 3 : Articles public ✅
 - [x] Page d'accueil avec liste articles
@@ -104,7 +107,7 @@ Règles clés établies pendant les tests :
 | topic-finder | ✅ Actif | skill `create-article` | Recherche sujets d'actualité |
 | content-generator | ✅ Actif | skill `create-article` | Génère articles FR+EN |
 | image-finder | ✅ Actif | skill `create-article` | Fallback si image manquante |
-| article-creator | ✅ Actif | manuel | Publie depuis pending.json |
+| article-creator | ❌ Obsolète | - | Remplacé par bouton Publier (UPDATE status) |
 | content-tuner | ✅ Actif | manuel | Ajuste guidelines |
 | image-prompt-generator | ⏳ Non utilisé | - | Prévu pour génération IA |
 | tester | ⏳ Non utilisé | - | Tests unitaires |

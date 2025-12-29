@@ -6,6 +6,7 @@ Site satirique gaming inspiré du Gorafi/NordPresse.
 
 - [Architecture technique](./docs/ARCHITECTURE.md)
 - [Suivi du projet](./docs/PROJECT_STATUS.md)
+- [Schéma base de données](./docs/DATABASE_SCHEMA.md)
 
 ## Skills disponibles
 
@@ -23,7 +24,7 @@ Site satirique gaming inspiré du Gorafi/NordPresse.
 | `topic-finder` | Recherche sujets d'actualité gaming | skill `create-article` |
 | `content-generator` | Génère articles FR+EN + télécharge image | skill `create-article` |
 | `image-finder` | Recherche image avancée (fallback) | skill `create-article` |
-| `article-creator` | Publie depuis pending.json vers /content | manuel |
+| `article-creator` | ~~Publie depuis pending.json~~ | obsolète (remplacé par API) |
 | `content-tuner` | Ajuste guidelines selon feedback | manuel |
 | `image-prompt-generator` | Génère prompts d'images IA | non utilisé |
 | `comment-orchestrator` | Planifie commentaires bots | manuel |
@@ -84,7 +85,8 @@ Les articles passent par `/drafts/pending.json` avant publication :
   User valide (/admin)
           │
           ▼
-   [article-creator]
+   Bouton "Publier"
+   (UPDATE status)
           │
           ▼
      Publié ✓
