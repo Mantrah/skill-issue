@@ -216,6 +216,41 @@ background: `radial-gradient(... ${color} 0%, var(--background) 70%)`
 
 **Note future** : L'effet actuel est un gradient centré. Une itération future pourrait implémenter un "vrai ambilight" avec émission depuis les bords de l'écran.
 
+### Gradient rouge en bas de page
+
+Un gradient rouge foncé désaturé est affiché en bas de chaque page (10vh de hauteur), juste au-dessus du footer.
+
+**Architecture** :
+- Le gradient est dans `layout.tsx` (élément `absolute bottom-0` dans le `main`)
+- L'`ambientStyle` des pages client utilise `backgroundSize: calc(100% - 10vh)` pour ne pas couvrir le bas
+- Cela laisse une zone transparente de 10vh où le gradient rouge du layout est visible
+
+**Fichiers concernés** :
+- `src/app/layout.tsx` : Élément div avec le gradient rouge
+- `src/hooks/useAmbientColor.ts` : `backgroundSize` réduit pour laisser passer le gradient
+
+**Code du gradient** (layout.tsx) :
+```tsx
+<div
+  className="absolute bottom-0 left-0 right-0 h-[10vh] pointer-events-none"
+  style={{ background: 'linear-gradient(to top, #2a1515, transparent)' }}
+/>
+```
+
+**Code ambientStyle** (useAmbientColor.ts) :
+```tsx
+const ambientStyle = {
+  backgroundImage: `radial-gradient(...)`,
+  backgroundSize: '100% calc(100% - 10vh)',  // Laisse 10vh en bas
+  backgroundPosition: 'top',
+  backgroundRepeat: 'no-repeat',
+  backgroundColor: 'transparent',  // Important pour voir le gradient rouge
+}
+```
+
+**Pour modifier la couleur** : Changer `#2a1515` dans layout.tsx
+**Pour modifier la hauteur** : Changer `10vh` dans layout.tsx ET useAmbientColor.ts
+
 ### Architecture des layers de background
 
 Le projet utilise plusieurs couches superposées pour les effets visuels. Comprendre cette hiérarchie est crucial pour éviter que des backgrounds soient masqués.

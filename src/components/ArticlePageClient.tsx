@@ -92,7 +92,7 @@ export default function ArticlePageClient({
                 <GamepadDecorations />
                 {/* Zone écran centrale - 60% au milieu avec bordure */}
                 <div className="absolute inset-0 flex items-center justify-center z-10 p-3">
-                  <div className="w-[60%] h-full border-2 border-black rounded-sm bg-black overflow-hidden flex items-center">
+                  <div className="w-[60%] h-full border-[3px] border-black rounded-sm bg-black overflow-hidden flex items-center">
                     <Image
                       src={article.image}
                       alt={article.title}
