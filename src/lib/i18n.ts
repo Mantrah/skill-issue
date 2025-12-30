@@ -42,6 +42,12 @@ export const translations = {
 
     // Footer
     disclaimer: 'Le contenu est géré par des développeurs <s>sous-payés</s> juniors. Certains ont été aperçus en train d\'ajouter des substances dans leur café. Restez donc vigilants lorsque vous nous citez dans vos sources.',
+    footerNav: 'Navigation',
+    footerLegal: 'Légal',
+    home: 'Accueil',
+    legalNotice: 'Mentions légales',
+    privacy: 'Confidentialité',
+    copyright: '© {year} Skill Issue - Site satirique',
 
     // Categories
     categories: {
@@ -106,6 +112,12 @@ export const translations = {
 
     // Footer
     disclaimer: 'Content is managed by <s>underpaid</s> junior developers. Some have been spotted adding substances to their coffee. Stay vigilant when citing us in your sources.',
+    footerNav: 'Navigation',
+    footerLegal: 'Legal',
+    home: 'Home',
+    legalNotice: 'Legal notice',
+    privacy: 'Privacy policy',
+    copyright: '© {year} Skill Issue - Satirical website',
 
     // Categories
     categories: {

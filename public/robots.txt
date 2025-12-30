@@ -1,0 +1,7 @@
+# Skill Issue - Robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://skillissue.vercel.app/sitemap.xml

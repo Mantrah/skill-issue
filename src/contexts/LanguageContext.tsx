@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useState, useEffect, type ReactNode } from 'react'
+import { createContext, useContext, useState, type ReactNode } from 'react'
 import { type Locale, defaultLocale, getTranslations, type Translations } from '@/lib/i18n'
 
 interface LanguageContextType {
@@ -11,16 +11,18 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(defaultLocale)
-
-  useEffect(() => {
-    // Récupérer la langue sauvegardée
+function getInitialLocale(): Locale {
+  if (typeof window !== 'undefined') {
     const saved = localStorage.getItem('locale') as Locale | null
     if (saved && (saved === 'fr' || saved === 'en')) {
-      setLocaleState(saved)
+      return saved
     }
-  }, [])
+  }
+  return defaultLocale
+}
+
+export function LanguageProvider({ children }: { children: ReactNode }) {
+  const [locale, setLocaleState] = useState<Locale>(getInitialLocale)
 
   const setLocale = (newLocale: Locale) => {
     setLocaleState(newLocale)

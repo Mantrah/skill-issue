@@ -28,7 +28,7 @@ export default function Header() {
   const { t } = useLanguage()
 
   return (
-    <header className="border-b border-card-border bg-header-bg">
+    <header className="border-b border-card-border bg-black">
       <div className="max-w-5xl mx-auto px-4 py-5">
         <div className="flex items-center justify-between">
           <Link href="/" className="group flex items-center gap-3">

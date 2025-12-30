@@ -58,6 +58,9 @@ export default function ArticlePageClient({
   // Select article based on locale, fallback to French
   const article = locale === 'en' && articleEn ? articleEn : articleFr
 
+  // Effet Ambilight : extraction couleur dynamique depuis l'image (hook appelé avant le return conditionnel)
+  const { ambientStyle } = useAmbientColor(article?.image)
+
   if (!article) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-8">
@@ -68,9 +71,6 @@ export default function ArticlePageClient({
 
   // Afficher max 3 tags
   const displayTags = article.tags.slice(0, 3)
-
-  // Effet Ambilight : extraction couleur dynamique depuis l'image
-  const { ambientStyle } = useAmbientColor(article.image)
 
   return (
     <div className="min-h-screen transition-all duration-1000 ease-out" style={ambientStyle}>

@@ -37,22 +37,25 @@
 skill-issue/
 ├── src/
 │   ├── app/
-│   │   ├── [locale]/
-│   │   │   ├── page.tsx              # Homepage
-│   │   │   ├── article/[slug]/
-│   │   │   │   └── page.tsx          # Article page
-│   │   │   ├── admin/
-│   │   │   │   ├── page.tsx          # Dashboard
-│   │   │   │   ├── articles/
-│   │   │   │   └── comments/
-│   │   │   └── auth/
-│   │   │       ├── login/
-│   │   │       └── callback/
-│   │   ├── api/
-│   │   │   ├── articles/
+│   │   ├── page.tsx                  # Homepage
+│   │   ├── layout.tsx                # Layout principal
+│   │   ├── not-found.tsx             # Page 404 personnalisée
+│   │   ├── sitemap.ts                # Sitemap dynamique
+│   │   ├── article/[slug]/
+│   │   │   └── page.tsx              # Article page
+│   │   ├── mentions-legales/
+│   │   │   └── page.tsx              # Mentions légales
+│   │   ├── confidentialite/
+│   │   │   └── page.tsx              # Politique de confidentialité
+│   │   ├── admin/
+│   │   │   ├── page.tsx              # Dashboard
 │   │   │   ├── comments/
-│   │   │   └── auth/
-│   │   └── layout.tsx
+│   │   │   ├── likers/
+│   │   │   └── news/
+│   │   └── api/
+│   │       ├── articles/
+│   │       ├── comments/
+│   │       └── news/
 │   ├── components/
 │   │   ├── ui/                       # Composants réutilisables
 │   │   ├── ArticleCard.tsx           # Carte article (featured + preview)
@@ -61,41 +64,40 @@ skill-issue/
 │   │   ├── CommentSection.tsx
 │   │   ├── GamepadDecorations.tsx    # Décorations manette (D-pad + boutons)
 │   │   ├── Header.tsx
-│   │   ├── Footer.tsx
+│   │   ├── Footer.tsx                # Footer avec Nav + Légal + Copyright
 │   │   ├── ShareButtons.tsx
 │   │   ├── LikeButton.tsx
 │   │   ├── ReportButton.tsx
 │   │   └── ImagePlaceholder.tsx
+│   ├── contexts/
+│   │   └── LanguageContext.tsx       # Contexte i18n FR/EN
 │   ├── hooks/
 │   │   └── useAmbientColor.ts        # Hook extraction couleur dominante
 │   ├── lib/
-│   │   ├── supabase/
-│   │   │   ├── client.ts
-│   │   │   ├── server.ts
-│   │   │   └── middleware.ts
-│   │   ├── i18n/
-│   │   │   ├── config.ts
-│   │   │   └── dictionaries/
-│   │   │       ├── en.json
-│   │   │       └── fr.json
-│   │   └── utils.ts
+│   │   ├── articles.ts               # Gestion articles (pending.json + markdown)
+│   │   ├── categories.ts             # 20 catégories thématiques
+│   │   ├── i18n.ts                   # Traductions FR/EN
+│   │   ├── comments.ts               # Gestion commentaires
+│   │   └── formatDate.ts             # Formatage dates
 │   └── types/
-│       └── index.ts
-├── content/                          # Articles publiés (markdown)
+│       ├── index.ts
+│       └── articles.ts               # Types PendingArticle, PendingData
+├── content/                          # Articles publiés (markdown legacy)
+│   ├── fr/
+│   └── en/
 ├── drafts/                           # Staging articles (JSON)
-│   ├── pending.json                  # Articles en attente de validation
+│   ├── pending.json                  # Articles en attente/publiés
 │   └── schema.json                   # Schéma JSON pour validation
 ├── public/
-│   └── images/
-├── supabase/
-│   └── migrations/
+│   ├── images/                       # Images articles
+│   └── robots.txt                    # Fichier robots SEO
 ├── docs/
 │   ├── ARCHITECTURE.md               # Ce fichier
-│   └── PROJECT_STATUS.md             # Suivi du projet
+│   ├── PROJECT_STATUS.md             # Suivi du projet
+│   └── DATABASE_SCHEMA.md            # Schéma Supabase (futur)
 ├── .claude/
-│   └── agents/
-│       ├── content-generator.md
-│       └── content-tuner.md
+│   ├── agents/                       # Agents IA
+│   └── skills/                       # Skills orchestration
 ├── CLAUDE.md                         # Contexte pour Claude
 ├── next.config.js
 ├── tailwind.config.js
@@ -216,40 +218,24 @@ background: `radial-gradient(... ${color} 0%, var(--background) 70%)`
 
 **Note future** : L'effet actuel est un gradient centré. Une itération future pourrait implémenter un "vrai ambilight" avec émission depuis les bords de l'écran.
 
-### Gradient rouge en bas de page
+### Gradient rouge en bas de page (NON IMPLÉMENTÉ)
 
-Un gradient rouge foncé désaturé est affiché en bas de chaque page (10vh de hauteur), juste au-dessus du footer.
+**Statut** : Abandonné - incompatible avec l'ambilight sans banding.
 
-**Architecture** :
-- Le gradient est dans `layout.tsx` (élément `absolute bottom-0` dans le `main`)
-- L'`ambientStyle` des pages client utilise `backgroundSize: calc(100% - 10vh)` pour ne pas couvrir le bas
-- Cela laisse une zone transparente de 10vh où le gradient rouge du layout est visible
+**Problème** : L'ambilight nécessite un fond opaque (`var(--background)`) pour éviter le banding (shades visibles). Ce fond opaque masque tout élément placé en dessous, rendant impossible l'affichage d'un gradient rouge via les layers CSS.
 
-**Fichiers concernés** :
-- `src/app/layout.tsx` : Élément div avec le gradient rouge
-- `src/hooks/useAmbientColor.ts` : `backgroundSize` réduit pour laisser passer le gradient
+**Approches testées et échouées** :
 
-**Code du gradient** (layout.tsx) :
-```tsx
-<div
-  className="absolute bottom-0 left-0 right-0 h-[10vh] pointer-events-none"
-  style={{ background: 'linear-gradient(to top, #2a1515, transparent)' }}
-/>
-```
+| Approche | Problème |
+|----------|----------|
+| Multiple backgrounds (rouge sous ambilight) | Le fond opaque de l'ambilight masque le rouge |
+| `transparent` au lieu de `var(--background)` | Crée du banding (shades) sur l'ambilight |
+| `rgba(26,26,26,0)` (même couleur alpha-0) | Crée toujours du banding |
+| `backgroundSize` pour raccourcir le fond | Crée une ligne de démarcation nette |
+| `mask-image` pour fader le fond | Résultat pire (banding + flou) |
+| Div fixed avec z-index | Soit masqué, soit par-dessus les articles |
 
-**Code ambientStyle** (useAmbientColor.ts) :
-```tsx
-const ambientStyle = {
-  backgroundImage: `radial-gradient(...)`,
-  backgroundSize: '100% calc(100% - 10vh)',  // Laisse 10vh en bas
-  backgroundPosition: 'top',
-  backgroundRepeat: 'no-repeat',
-  backgroundColor: 'transparent',  // Important pour voir le gradient rouge
-}
-```
-
-**Pour modifier la couleur** : Changer `#2a1515` dans layout.tsx
-**Pour modifier la hauteur** : Changer `10vh` dans layout.tsx ET useAmbientColor.ts
+**Conclusion** : Pour ajouter un gradient rouge en bas de page, il faudrait repenser l'architecture de l'ambilight (ex: utiliser un élément dédié avec box-shadow au lieu d'un background global).
 
 ### Architecture des layers de background
 

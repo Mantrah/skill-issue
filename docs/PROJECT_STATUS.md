@@ -72,6 +72,16 @@
 - [x] Refonte système catégories (20 catégories thématiques, multi-tags, frontmatter YAML)
 - [ ] Tests de performance
 
+### Phase 8 : Production Readiness ✅
+- [x] Footer complet (Navigation + Légal + Copyright)
+- [x] Page Mentions légales (`/mentions-legales`)
+- [x] Page Politique de confidentialité (`/confidentialite`)
+- [x] Page 404 personnalisée
+- [x] robots.txt
+- [x] sitemap.xml dynamique (articles + pages statiques)
+- [ ] OpenGraph meta améliorés (images dynamiques)
+- [ ] Analytics (optionnel - Plausible recommandé)
+
 ## Articles validés (6)
 
 | Fichier | Sujet | Status |
@@ -118,6 +128,40 @@ Règles clés établies pendant les tests :
 - Prévoir agent "content-checker" pour détecter répétitions entre articles (nécessite MCP + DB)
 - Domaine skillissue.gg (~50€/an) quand le site sera prêt
 
+## Commandes utiles
+
+### Lancer le serveur de développement
+
+```bash
+npm run dev
+```
+
+Le serveur démarre sur http://localhost:3000
+
+### Relancer le serveur (port occupé)
+
+Si le port 3000 est déjà utilisé :
+
+```powershell
+# 1. Trouver le processus qui utilise le port
+netstat -ano | findstr ":3000"
+
+# 2. Tuer le processus (remplacer XXXXX par le PID trouvé)
+taskkill /F /PID XXXXX
+
+# Ou en une commande PowerShell :
+Stop-Process -Id (Get-NetTCPConnection -LocalPort 3000).OwningProcess -Force
+
+# 3. Relancer le serveur
+npm run dev
+```
+
+### Build production
+
+```bash
+npm run build
+```
+
 ## Troubleshooting
 
 ### Erreur Turbopack "Failed to write app endpoint /page"
@@ -135,4 +179,4 @@ del "\\?\C:\chemin\vers\projet\nul"
 
 ## Dernière mise à jour
 
-2025-12-29 - Troll face curseur sur bouton Signaler, doc troubleshooting
+2025-12-30 - Footer complet, pages légales, SEO (robots.txt, sitemap), page 404, doc commandes

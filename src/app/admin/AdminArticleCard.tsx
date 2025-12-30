@@ -273,7 +273,7 @@ export default function AdminArticleCard({ article }: { article: PendingArticle 
           <div className="p-4">
             <div className="mb-3">
               <label className="block text-xs font-medium text-foreground mb-2">
-                Instructions de correction pour l'IA
+                Instructions de correction pour l&apos;IA
               </label>
               <textarea
                 value={correctionPrompt}
@@ -282,7 +282,7 @@ export default function AdminArticleCard({ article }: { article: PendingArticle 
                 className="w-full h-24 bg-card rounded-lg border border-card-border p-3 text-sm text-foreground leading-relaxed resize-none focus:outline-none focus:border-orange-500 placeholder:text-muted/50"
               />
               <p className="text-[10px] text-muted/60 mt-1">
-                L'article sera marqué "À corriger" et pourra être régénéré par le content-generator
+                L&apos;article sera marqué &quot;À corriger&quot; et pourra être régénéré par le content-generator
               </p>
             </div>
 
