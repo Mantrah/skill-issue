@@ -3,18 +3,8 @@
 import { useState } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { formatRelativeDate } from '@/lib/formatDate'
-
-type UserStatus = 'admin' | 'bot' | 'user'
-
-interface Comment {
-  id: string
-  author: string
-  content: string
-  date: string
-  likes: number
-  status: UserStatus
-  replyTo: string | null
-}
+import { matchLikers, type Liker } from '@/lib/liker-matcher'
+import type { Comment, UserStatus } from '@/lib/comments'
 
 function StatusBadge({ status }: { status: UserStatus }) {
   const badges = {
@@ -28,6 +18,71 @@ function StatusBadge({ status }: { status: UserStatus }) {
       {badges[status]}
     </span>
   )
+}
+
+// Mini liker display for comments (compact: "Name1, Name2 +X")
+function CommentLikerDisplay({
+  likers,
+  totalLikes,
+  userLiked
+}: {
+  likers: Liker[]
+  totalLikes: number
+  userLiked: boolean
+}) {
+  const effectiveLikes = userLiked ? totalLikes + 1 : totalLikes
+  const liker1 = likers[0]
+  const liker2 = likers[1]
+
+  if (effectiveLikes === 0) {
+    return <span>0</span>
+  }
+
+  // 1 like
+  if (effectiveLikes === 1) {
+    const name = userLiked ? 'Vous' : (liker1?.name || '1')
+    return (
+      <span className="truncate max-w-[120px]" title={name}>
+        {name}
+      </span>
+    )
+  }
+
+  // 2 likes: "Name1, Name2"
+  if (effectiveLikes === 2 && liker1 && liker2) {
+    const title = `${liker1.name}, ${liker2.name}`
+    return (
+      <span className="truncate max-w-[180px]" title={title}>
+        {liker1.name}, {liker2.name}
+      </span>
+    )
+  }
+
+  // 3+ likes: "Name1, Name2 +X"
+  const name1 = liker1?.name
+  const name2 = liker2?.name
+
+  if (name1 && name2) {
+    const othersCount = effectiveLikes - 2
+    const title = `${name1}, ${name2} et ${othersCount} autres`
+    return (
+      <span className="truncate max-w-[200px]" title={title}>
+        {name1}, {name2} <span className="text-muted">+{othersCount}</span>
+      </span>
+    )
+  }
+
+  // Fallback: juste le count si pas de likers matchés
+  if (name1) {
+    const othersCount = effectiveLikes - 1
+    return (
+      <span className="truncate max-w-[150px]" title={`${name1} et ${othersCount} autres`}>
+        {name1} <span className="text-muted">+{othersCount}</span>
+      </span>
+    )
+  }
+
+  return <span>{effectiveLikes}</span>
 }
 
 interface CommentSectionProps {
@@ -95,7 +150,8 @@ export default function CommentSection({ slug, comments }: CommentSectionProps) 
           })
           .map(comment => {
           const isLiked = likedComments.has(comment.id)
-          const displayLikes = isLiked ? comment.likes + 1 : comment.likes
+          // Match likers based on comment content (max 2 for display)
+          const commentLikers = matchLikers(comment.content, [], 2)
 
           return (
             <div key={comment.id} className="p-4 bg-card border border-card-border rounded-xl">
@@ -132,7 +188,7 @@ export default function CommentSection({ slug, comments }: CommentSectionProps) 
                       }`}
                     >
                       <svg
-                        className="w-4 h-4"
+                        className="w-4 h-4 flex-shrink-0"
                         viewBox="0 0 24 24"
                         fill={isLiked ? 'currentColor' : 'none'}
                         stroke="currentColor"
@@ -140,7 +196,11 @@ export default function CommentSection({ slug, comments }: CommentSectionProps) 
                       >
                         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                       </svg>
-                      <span>{displayLikes}</span>
+                      <CommentLikerDisplay
+                        likers={commentLikers}
+                        totalLikes={comment.likes}
+                        userLiked={isLiked}
+                      />
                     </button>
 
                     <button

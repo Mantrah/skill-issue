@@ -1,16 +1,9 @@
 import { notFound } from "next/navigation";
 import { getArticleBySlug, getAllSlugs } from "@/lib/articles";
 import { getCommentsBySlug } from "@/lib/comments";
+import { matchLikers, generateLikeCount } from "@/lib/liker-matcher";
 import ArticlePageClient from "@/components/ArticlePageClient";
 import type { Metadata } from "next";
-
-// Likes mockés par article (sera remplacé par la DB)
-const articleLikes: Record<string, number> = {
-  'ubisoft-ac-shadows': 127,
-  'ea-fc25-microtransactions': 89,
-  'nintendo-fuite-cartouches': 234,
-  'metroid-prime-4-attente': 456,
-}
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -53,12 +46,24 @@ export default async function ArticlePage({ params }: PageProps) {
   // Fetch comments from JSON
   const comments = getCommentsBySlug(slug);
 
+  // Match likers based on article content
+  const article = articleFr || articleEn!;
+  const likers = matchLikers(
+    `${article.title} ${article.content}`,
+    article.tags,
+    5
+  );
+
+  // Generate deterministic like count based on slug
+  const initialLikes = generateLikeCount(slug);
+
   return (
     <ArticlePageClient
       articleFr={articleFr}
       articleEn={articleEn}
       slug={slug}
-      initialLikes={articleLikes[slug] || 0}
+      initialLikes={initialLikes}
+      likers={likers}
       comments={comments}
     />
   );

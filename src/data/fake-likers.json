@@ -1,0 +1,197 @@
+{
+  "$schema": "./fake-likers.schema.json",
+  "likers": [
+    {
+      "id": "todd-howard",
+      "name": "Todd Howard",
+      "avatar": null,
+      "triggers": ["bethesda", "skyrim", "fallout", "bug", "it just works", "re-release", "remaster", "starfield"]
+    },
+    {
+      "id": "gabe-newell",
+      "name": "Gabe Newell",
+      "avatar": null,
+      "triggers": ["valve", "steam", "half-life", "dota", "vente", "soldes", "sale", "counter-strike", "cs2"]
+    },
+    {
+      "id": "phil-spencer",
+      "name": "Phil Spencer",
+      "avatar": null,
+      "triggers": ["xbox", "microsoft", "game pass", "gamepass", "acquisition", "rachat", "activision", "blizzard"]
+    },
+    {
+      "id": "shigeru-miyamoto",
+      "name": "Shigeru Miyamoto",
+      "avatar": null,
+      "triggers": ["mario", "zelda", "nintendo", "innovation", "creativite", "link", "pokemon"]
+    },
+    {
+      "id": "hideo-kojima",
+      "name": "Hideo Kojima",
+      "avatar": null,
+      "triggers": ["metal gear", "death stranding", "cinematique", "auteur", "konami", "kojima productions"]
+    },
+    {
+      "id": "bobby-kotick",
+      "name": "Bobby Kotick",
+      "avatar": null,
+      "triggers": ["activision", "blizzard", "licenciement", "layoff", "bonus", "ceo", "scandal"]
+    },
+    {
+      "id": "reggie-fils-aime",
+      "name": "Reggie Fils-Aime",
+      "avatar": null,
+      "triggers": ["nintendo", "ready", "body", "e3", "my body is ready"]
+    },
+    {
+      "id": "dr-disrespect",
+      "name": "Dr Disrespect",
+      "avatar": null,
+      "triggers": ["ban", "twitch", "streaming", "scandale", "youtube", "controversy"]
+    },
+    {
+      "id": "doge",
+      "name": "Doge",
+      "avatar": null,
+      "triggers": ["crypto", "shiba", "wow", "such", "much", "dogecoin", "meme"]
+    },
+    {
+      "id": "chad",
+      "name": "Chad",
+      "avatar": null,
+      "triggers": ["sigma", "alpha", "grindset", "based", "gigachad", "male"]
+    },
+    {
+      "id": "karen",
+      "name": "Karen",
+      "avatar": null,
+      "triggers": ["manager", "plainte", "injuste", "refund", "complaint", "speak to"]
+    },
+    {
+      "id": "florida-man",
+      "name": "Florida Man",
+      "avatar": null,
+      "triggers": ["bizarre", "wtf", "absurde", "fou", "crazy", "weird", "florida"]
+    },
+    {
+      "id": "stonks",
+      "name": "Stonks",
+      "avatar": null,
+      "triggers": ["economie", "bourse", "business", "argent", "money", "stock", "invest", "profit"]
+    },
+    {
+      "id": "hide-pain-harold",
+      "name": "Hide the Pain Harold",
+      "avatar": null,
+      "triggers": ["souffrance", "deception", "sourire", "pain", "suffering", "sad", "fake smile"]
+    },
+    {
+      "id": "harry-potter",
+      "name": "Harry Potter",
+      "avatar": null,
+      "triggers": ["hogwarts", "wizard", "magic", "warner", "magie", "legacy", "jk rowling"]
+    },
+    {
+      "id": "vladimir-poutine",
+      "name": "Vladimir Poutine",
+      "avatar": null,
+      "triggers": ["invasion", "territoire", "conquete", "domination", "russie", "russia", "war"]
+    },
+    {
+      "id": "elon-musk",
+      "name": "Elon Musk",
+      "avatar": null,
+      "triggers": ["twitter", "x", "tesla", "crypto", "nft", "ia", "licenciement", "spacex", "ai"]
+    },
+    {
+      "id": "mark-zuckerberg",
+      "name": "Mark Zuckerberg",
+      "avatar": null,
+      "triggers": ["meta", "facebook", "metaverse", "donnees", "vr", "instagram", "privacy", "data"]
+    },
+    {
+      "id": "jeff-bezos",
+      "name": "Jeff Bezos",
+      "avatar": null,
+      "triggers": ["amazon", "prime", "livraison", "espace", "space", "blue origin", "rich"]
+    },
+    {
+      "id": "donald-trump",
+      "name": "Donald Trump",
+      "avatar": null,
+      "triggers": ["mur", "ban", "twitter", "grande", "meilleur", "best", "huge", "tremendous"]
+    },
+    {
+      "id": "kim-jong-un",
+      "name": "Kim Jong-un",
+      "avatar": null,
+      "triggers": ["coree", "nucleaire", "missile", "supreme", "korea", "north korea", "dictator"]
+    },
+    {
+      "id": "thanos",
+      "name": "Thanos",
+      "avatar": null,
+      "triggers": ["equilibre", "moitie", "inevitable", "snap", "infinity", "balance", "half"]
+    },
+    {
+      "id": "dark-vador",
+      "name": "Dark Vador",
+      "avatar": null,
+      "triggers": ["cote obscur", "empire", "pere", "force", "star wars", "dark side", "vader"]
+    },
+    {
+      "id": "sauron",
+      "name": "Sauron",
+      "avatar": null,
+      "triggers": ["anneau", "mordor", "oeil", "domination", "ring", "lord of the rings", "eye"]
+    },
+    {
+      "id": "geralt-de-riv",
+      "name": "Geralt de Riv",
+      "avatar": null,
+      "triggers": ["witcher", "sorceleur", "hmm", "fuck", "cd projekt", "cdpr", "gwent"]
+    },
+    {
+      "id": "master-chief",
+      "name": "Master Chief",
+      "avatar": null,
+      "triggers": ["halo", "spartan", "cortana", "343", "infinite", "xbox"]
+    },
+    {
+      "id": "kratos",
+      "name": "Kratos",
+      "avatar": null,
+      "triggers": ["god of war", "boy", "rage", "atreus", "ragnarok", "santa monica"]
+    },
+    {
+      "id": "ea-sports",
+      "name": "EA Sports",
+      "avatar": null,
+      "triggers": ["ea", "fifa", "fc", "madden", "nhl", "microtransaction", "fut", "ultimate team"]
+    },
+    {
+      "id": "ubisoft-towers",
+      "name": "Ubisoft Towers",
+      "avatar": null,
+      "triggers": ["ubisoft", "assassin", "creed", "far cry", "tower", "map", "collectible"]
+    },
+    {
+      "id": "gamer-rage",
+      "name": "Gamer en colere",
+      "avatar": null,
+      "triggers": ["rage", "broken", "casse", "controller", "manette", "ragequit", "nerf"]
+    },
+    {
+      "id": "nintendo-lawyer",
+      "name": "Avocat Nintendo",
+      "avatar": null,
+      "triggers": ["dmca", "cease", "desist", "copyright", "fan game", "emulator", "rom", "lawsuit"]
+    },
+    {
+      "id": "steam-wallet",
+      "name": "Mon Portefeuille Steam",
+      "avatar": null,
+      "triggers": ["soldes", "sale", "discount", "backlog", "library", "never play", "acheter"]
+    }
+  ]
+}

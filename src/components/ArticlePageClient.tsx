@@ -7,6 +7,7 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { useAmbientColor } from '@/hooks/useAmbientColor'
 import { categoryConfig, type Category } from '@/lib/categories'
 import { formatDateLocale } from '@/lib/i18n'
+import type { Liker } from '@/lib/liker-matcher'
 import ImagePlaceholder from './ImagePlaceholder'
 import GamepadDecorations from './GamepadDecorations'
 import ShareButtons from './ShareButtons'
@@ -40,6 +41,7 @@ interface ArticlePageClientProps {
   articleEn: Article | null
   slug: string
   initialLikes: number
+  likers: Liker[]
   comments: Comment[]
 }
 
@@ -48,6 +50,7 @@ export default function ArticlePageClient({
   articleEn,
   slug,
   initialLikes,
+  likers,
   comments,
 }: ArticlePageClientProps) {
   const { locale, t } = useLanguage()
@@ -130,7 +133,7 @@ export default function ArticlePageClient({
           </h1>
 
           <div className="flex flex-wrap items-center gap-4">
-            <LikeButton initialLikes={initialLikes} />
+            <LikeButton initialLikes={initialLikes} likers={likers} />
             <ShareButtons
               url={`https://skillissue.fr/article/${slug}`}
               title={article.title}

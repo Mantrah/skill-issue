@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "sources": [
+    {
+      "id": "ign",
+      "name": "IGN",
+      "url": "https://feeds.feedburner.com/ign/all",
+      "lang": "en",
+      "enabled": true,
+      "category": "gaming"
+    },
+    {
+      "id": "kotaku",
+      "name": "Kotaku",
+      "url": "https://kotaku.com/rss",
+      "lang": "en",
+      "enabled": true,
+      "category": "gaming"
+    },
+    {
+      "id": "pcgamer",
+      "name": "PC Gamer",
+      "url": "https://www.pcgamer.com/rss/",
+      "lang": "en",
+      "enabled": true,
+      "category": "gaming"
+    },
+    {
+      "id": "eurogamer",
+      "name": "Eurogamer",
+      "url": "https://www.eurogamer.net/feed",
+      "lang": "en",
+      "enabled": true,
+      "category": "gaming"
+    },
+    {
+      "id": "gamespot",
+      "name": "GameSpot",
+      "url": "https://www.gamespot.com/feeds/mashup/",
+      "lang": "en",
+      "enabled": true,
+      "category": "gaming"
+    },
+    {
+      "id": "jeuxvideo",
+      "name": "JeuxVideo.com",
+      "url": "https://www.jeuxvideo.com/rss/rss.xml",
+      "lang": "fr",
+      "enabled": true,
+      "category": "gaming"
+    },
+    {
+      "id": "gamekult",
+      "name": "Gamekult",
+      "url": "https://www.gamekult.com/feed.xml",
+      "lang": "fr",
+      "enabled": true,
+      "category": "gaming"
+    }
+  ],
+  "satiricalKeywords": {
+    "high": [
+      "microtransaction",
+      "loot box",
+      "pay-to-win",
+      "layoff",
+      "licenciement",
+      "delay",
+      "report",
+      "bug",
+      "crash",
+      "controversy",
+      "scandale",
+      "nft",
+      "crypto",
+      "drm",
+      "always-online",
+      "server shutdown",
+      "battle pass",
+      "season pass",
+      "premium currency",
+      "crunch",
+      "remaster",
+      "remake",
+      "re-release"
+    ],
+    "medium": [
+      "early access",
+      "beta",
+      "dlc",
+      "expansion",
+      "update",
+      "patch",
+      "nerf",
+      "buff",
+      "meta",
+      "esports",
+      "streamer",
+      "influencer",
+      "subscription",
+      "free-to-play",
+      "mobile",
+      "port",
+      "crossplay",
+      "exclusive"
+    ],
+    "low": [
+      "announcement",
+      "trailer",
+      "reveal",
+      "release",
+      "launch",
+      "review",
+      "preview",
+      "interview"
+    ]
+  }
+}

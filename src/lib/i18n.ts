@@ -28,6 +28,14 @@ export const translations = {
     comment: 'Commenter',
     reply: 'Répondre',
 
+    // Likes
+    beFirstToLike: 'Soyez le premier a aimer',
+    likes: 'aime',
+    likePlural: 'aiment',
+    andName: 'et {name}',
+    andOneLike: 'et 1 autre aiment',
+    andOthersLike: 'et {count} autres aiment',
+
     // Report
     report: 'Signaler',
     reportThanks: 'Merci pour votre signalement !',
@@ -83,6 +91,14 @@ export const translations = {
     loginToComment: 'Log in to comment...',
     comment: 'Comment',
     reply: 'Reply',
+
+    // Likes
+    beFirstToLike: 'Be the first to like',
+    likes: 'likes this',
+    likePlural: 'like this',
+    andName: 'and {name}',
+    andOneLike: 'and 1 other like this',
+    andOthersLike: 'and {count} others like this',
 
     // Report
     report: 'Report',

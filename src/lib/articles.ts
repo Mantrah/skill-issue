@@ -18,10 +18,90 @@ export interface Article {
   date: string
 }
 
+// Interface pour les articles dans pending.json
+interface PendingArticle {
+  id: string
+  slug: string
+  tags: string[]
+  imageUrl: string
+  localImage?: string
+  date: string
+  status: 'pending' | 'approved' | 'published' | 'rejected' | 'needs_correction'
+  publishedAt?: string
+  fr: { title: string; content: string }
+  en: { title: string; content: string }
+}
+
+interface PendingData {
+  articles: PendingArticle[]
+}
+
+const pendingFilePath = path.join(process.cwd(), 'drafts', 'pending.json')
+
+function readPendingData(): PendingData {
+  if (!fs.existsSync(pendingFilePath)) {
+    return { articles: [] }
+  }
+  try {
+    return JSON.parse(fs.readFileSync(pendingFilePath, 'utf8'))
+  } catch {
+    return { articles: [] }
+  }
+}
+
+function extractExcerpt(content: string): string {
+  const excerptMatch = content.match(/\*\*(.+?)\*\*/s)
+  return excerptMatch ? excerptMatch[1].trim() : ''
+}
+
+function getPublishedFromPending(locale: Locale): Article[] {
+  const data = readPendingData()
+  return data.articles
+    .filter(a => a.status === 'published')
+    .map(article => {
+      const localeData = locale === 'fr' ? article.fr : article.en
+      const content = localeData.content.split('\n').filter(line => !line.startsWith('# ')).join('\n').trim()
+      const tags = article.tags.filter(t => allCategories.includes(t as Category)) as Category[]
+
+      return {
+        slug: article.slug,
+        title: localeData.title,
+        excerpt: extractExcerpt(localeData.content),
+        content,
+        tags: tags.length > 0 ? tags : ['general'] as Category[],
+        category: (tags[0] || 'general') as Category,
+        image: article.localImage || undefined,
+        date: article.publishedAt?.split('T')[0] || article.date
+      }
+    })
+}
+
+function getArticleFromPending(slug: string, locale: Locale): Article | null {
+  const data = readPendingData()
+  const article = data.articles.find(a => a.slug === slug && a.status === 'published')
+  if (!article) return null
+
+  const localeData = locale === 'fr' ? article.fr : article.en
+  const content = localeData.content.split('\n').filter(line => !line.startsWith('# ')).join('\n').trim()
+  const tags = article.tags.filter(t => allCategories.includes(t as Category)) as Category[]
+
+  return {
+    slug: article.slug,
+    title: localeData.title,
+    excerpt: extractExcerpt(localeData.content),
+    content,
+    tags: tags.length > 0 ? tags : ['general'] as Category[],
+    category: (tags[0] || 'general') as Category,
+    image: article.localImage || undefined,
+    date: article.publishedAt?.split('T')[0] || article.date
+  }
+}
+
 // Dates des articles publiés (sera remplacé par la DB plus tard)
 // IMPORTANT: Seuls les articles listés ici sont visibles sur le site public
 // Les articles sans date sont considérés comme "drafts" et ne s'affichent pas
 const articleDates: Record<string, string> = {
+  'ea-rachat-55-milliards': '2025-12-29',
   'palworld-joueurs-realisation': '2025-12-26',
   'ubisoft-ac-shadows': '2025-12-24',
   'ea-fc25-microtransactions': '2025-12-23',
@@ -158,36 +238,51 @@ function parseArticle(slug: string, fileContent: string): { title: string; excer
 }
 
 export function getAllArticles(locale: Locale = defaultLocale): Article[] {
+  // 1. Articles depuis les fichiers markdown (legacy)
   const contentDirectory = getContentDirectory(locale)
-  if (!fs.existsSync(contentDirectory)) {
-    return []
+  let markdownArticles: Article[] = []
+
+  if (fs.existsSync(contentDirectory)) {
+    const fileNames = fs.readdirSync(contentDirectory)
+    markdownArticles = fileNames
+      .filter(fileName => fileName.endsWith('.md'))
+      .filter(fileName => {
+        const slug = fileName.replace(/\.md$/, '')
+        return slug in articleDates
+      })
+      .map(fileName => {
+        const slug = fileName.replace(/\.md$/, '')
+        const fullPath = path.join(contentDirectory, fileName)
+        const fileContent = fs.readFileSync(fullPath, 'utf8')
+        const { title, excerpt, content, tags } = parseArticle(slug, fileContent)
+        const image = findImage(slug)
+        const date = articleDates[slug]
+
+        return { slug, title, excerpt, content, tags, category: tags[0], image, date }
+      })
   }
 
-  const fileNames = fs.readdirSync(contentDirectory)
-  const articles = fileNames
-    .filter(fileName => fileName.endsWith('.md'))
-    .filter(fileName => {
-      // Seuls les articles avec une date explicite sont publiés
-      const slug = fileName.replace(/\.md$/, '')
-      return slug in articleDates
-    })
-    .map(fileName => {
-      const slug = fileName.replace(/\.md$/, '')
-      const fullPath = path.join(contentDirectory, fileName)
-      const fileContent = fs.readFileSync(fullPath, 'utf8')
-      const { title, excerpt, content, tags } = parseArticle(slug, fileContent)
-      const image = findImage(slug)
-      const date = articleDates[slug]
+  // 2. Articles publiés depuis pending.json
+  const pendingArticles = getPublishedFromPending(locale)
 
-      return { slug, title, excerpt, content, tags, category: tags[0], image, date }
-    })
+  // 3. Fusionner (pending.json a priorité si même slug)
+  const pendingSlugs = new Set(pendingArticles.map(a => a.slug))
+  const filteredMarkdown = markdownArticles.filter(a => !pendingSlugs.has(a.slug))
+
+  const allArticles = [...pendingArticles, ...filteredMarkdown]
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
-  return articles
+  return allArticles
 }
 
 export function getArticleBySlug(slug: string, locale: Locale = defaultLocale): Article | null {
-  // Vérifie que l'article est publié (a une date explicite)
+  // 1. Chercher d'abord dans pending.json (articles publiés)
+  const pendingArticle = getArticleFromPending(slug, locale)
+  if (pendingArticle) {
+    return pendingArticle
+  }
+
+  // 2. Sinon chercher dans les fichiers markdown (legacy)
   if (!(slug in articleDates)) {
     return null
   }
@@ -208,13 +303,22 @@ export function getArticleBySlug(slug: string, locale: Locale = defaultLocale): 
 }
 
 export function getAllSlugs(locale: Locale = defaultLocale): string[] {
+  // 1. Slugs depuis pending.json (published)
+  const data = readPendingData()
+  const pendingSlugs = data.articles
+    .filter(a => a.status === 'published')
+    .map(a => a.slug)
+
+  // 2. Slugs depuis fichiers markdown (legacy)
   const contentDirectory = getContentDirectory(locale)
-  if (!fs.existsSync(contentDirectory)) {
-    return []
+  let markdownSlugs: string[] = []
+  if (fs.existsSync(contentDirectory)) {
+    markdownSlugs = fs.readdirSync(contentDirectory)
+      .filter(fileName => fileName.endsWith('.md'))
+      .map(fileName => fileName.replace(/\.md$/, ''))
+      .filter(slug => slug in articleDates)
   }
 
-  return fs.readdirSync(contentDirectory)
-    .filter(fileName => fileName.endsWith('.md'))
-    .map(fileName => fileName.replace(/\.md$/, ''))
-    .filter(slug => slug in articleDates) // Seuls les articles publiés
+  // 3. Fusionner (unique)
+  return [...new Set([...pendingSlugs, ...markdownSlugs])]
 }

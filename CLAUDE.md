@@ -8,27 +8,46 @@ Site satirique gaming inspiré du Gorafi/NordPresse.
 - [Suivi du projet](./docs/PROJECT_STATUS.md)
 - [Schéma base de données](./docs/DATABASE_SCHEMA.md)
 
+## Règles de modification (OBLIGATOIRE)
+
+### Changements TRIVIAUX (implémenter directement)
+- Typos, couleurs, spacing, textes statiques
+- Valeurs numériques simples
+- Corrections mineures sans impact structurel
+
+### Changements NON-TRIVIAUX (plan mode obligatoire)
+Pour tout changement impliquant :
+- Nouveau fichier ou composant
+- Modification de logique métier
+- Changement d'architecture
+- Création/modification d'agent ou skill
+- Modifications multi-fichiers
+
+**JE DOIS** :
+1. Entrer en plan mode (`EnterPlanMode`)
+2. Appeler l'agent `analyste` pour vérifier cohérence projet
+3. Écrire le plan dans `.claude/plans/`
+4. Attendre validation utilisateur
+5. Implémenter en suivant les guidelines du skill `/implement`
+
 ## Skills disponibles
 
 | Skill | Commande | Description |
 |-------|----------|-------------|
-| `analyze` | `/analyze` | Analyse avant toute modification du projet |
-| `implement` | `/implement` | Implémente après validation d'un plan |
+| `implement` | `/implement` | Implémente après validation d'un plan (guidelines projet) |
 | `create-article` | `/create-article [sujet]` | Orchestre la création d'article (topic → content → image → pending.json) |
+| `orchestrate-comments` | `/orchestrate-comments [slug]` | Planifie les commentaires bots pour un article |
 
 ## Agents disponibles
 
 | Agent | Rôle | Appelé par |
 |-------|------|------------|
-| `analyste` | Analyse demandes, vérifie cohérence | skill `analyze` |
+| `analyste` | Analyse demandes, vérifie cohérence projet | plan mode (automatique) |
 | `topic-finder` | Recherche sujets d'actualité gaming | skill `create-article` |
 | `content-generator` | Génère articles FR+EN + télécharge image | skill `create-article` |
 | `image-finder` | Recherche image avancée (fallback) | skill `create-article` |
-| `article-creator` | ~~Publie depuis pending.json~~ | obsolète (remplacé par API) |
 | `content-tuner` | Ajuste guidelines selon feedback | manuel |
-| `image-prompt-generator` | Génère prompts d'images IA | non utilisé |
-| `comment-orchestrator` | Planifie commentaires bots | manuel |
-| `tester` | Tests unitaires et validation | non utilisé |
+| `comment-orchestrator` | Planifie commentaires bots | skill `orchestrate-comments` |
 | `bots/*` | Personnalités des bots commentateurs | comment-orchestrator |
 
 ## Workflow de création d'article

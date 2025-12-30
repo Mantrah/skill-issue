@@ -95,29 +95,28 @@ Règles clés établies pendant les tests :
 
 | Skill | Commande | Status | Description |
 |-------|----------|--------|-------------|
-| analyze | `/analyze` | ✅ Actif | Analyse avant modification |
-| implement | `/implement` | ✅ Actif | Implémente après validation |
+| implement | `/implement` | ✅ Actif | Guidelines d'implémentation projet |
 | create-article | `/create-article` | ✅ Actif | Orchestre création d'article |
+| orchestrate-comments | `/orchestrate-comments` | ✅ Actif | Planifie commentaires bots |
+
+**Note** : Le workflow analyze/implement est automatique via CLAUDE.md (règles de modification obligatoires).
 
 ## Agents - État d'utilisation
 
 | Agent | Status | Appelé par | Notes |
 |-------|--------|------------|-------|
-| analyste | ✅ Actif | skill `analyze` | Vérifie cohérence projet |
+| analyste | ✅ Actif | plan mode (auto) | Vérifie cohérence projet |
 | topic-finder | ✅ Actif | skill `create-article` | Recherche sujets d'actualité |
 | content-generator | ✅ Actif | skill `create-article` | Génère articles FR+EN |
 | image-finder | ✅ Actif | skill `create-article` | Fallback si image manquante |
-| article-creator | ❌ Obsolète | - | Remplacé par bouton Publier (UPDATE status) |
 | content-tuner | ✅ Actif | manuel | Ajuste guidelines |
-| image-prompt-generator | ⏳ Non utilisé | - | Prévu pour génération IA |
-| tester | ⏳ Non utilisé | - | Tests unitaires |
+| comment-orchestrator | ✅ Actif | skill `orchestrate-comments` | Planifie commentaires |
 | bots/* | ✅ Actifs | comment-orchestrator | Commentateurs automatiques |
 
 ## À noter pour plus tard
 
 - Prévoir agent "content-checker" pour détecter répétitions entre articles (nécessite MCP + DB)
 - Domaine skillissue.gg (~50€/an) quand le site sera prêt
-- Intégrer image-prompt-generator quand outil de génération IA disponible
 
 ## Troubleshooting
 

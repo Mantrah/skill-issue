@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import fs from 'fs'
 import path from 'path'
+import { scheduleComments } from '@/lib/comment-scheduler'
+import { createScheduledComments } from '@/lib/comments'
 
 interface ArticleContent {
   title: string
@@ -17,6 +19,7 @@ interface PendingArticle {
   status: 'pending' | 'approved' | 'rejected' | 'published' | 'needs_correction'
   createdAt: string
   updatedAt?: string
+  publishedAt?: string
   fr: ArticleContent
   en: ArticleContent
   metadata?: Record<string, unknown>
@@ -62,12 +65,28 @@ export async function POST(request: NextRequest) {
     const now = new Date().toISOString()
 
     switch (action) {
-      case 'publish':
-        // Pour l'instant, on marque juste comme approved
-        // La vraie publication (création fichiers + articles.ts) sera faite plus tard
-        article.status = 'approved'
+      case 'publish': {
+        // Publication directe - l'article sera visible sur le site
+        article.status = 'published'
         article.updatedAt = now
+        article.publishedAt = now
+
+        // Planifier les commentaires des bots
+        const publishDate = new Date(now)
+        const scheduled = scheduleComments(publishDate)
+        const toSchedule = scheduled
+          .filter(s => s.willComment)
+          .map(s => ({
+            author: s.author,
+            scheduledAt: s.scheduledAt.toISOString(),
+            botId: s.botId
+          }))
+
+        if (toSchedule.length > 0) {
+          createScheduledComments(slug, toSchedule)
+        }
         break
+      }
 
       case 'reject':
         article.status = 'rejected'

@@ -39,18 +39,16 @@ export default function AdminPage() {
   const rejectedArticles = allArticles.filter(a => a.status === 'rejected')
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="max-w-5xl mx-auto px-4 py-8">
-        <div className="mb-6">
-          <h1 className="text-3xl font-bold text-foreground">Administration</h1>
-          <p className="text-muted mt-1">Gestion des articles</p>
-        </div>
-
-        <AdminTabs
-          pendingArticles={pendingArticles}
-          rejectedArticles={rejectedArticles}
-        />
+    <div className="max-w-5xl mx-auto px-4 py-8">
+      <div className="mb-6">
+        <h1 className="text-2xl font-bold text-foreground">Articles</h1>
+        <p className="text-muted text-sm mt-1">Gestion des articles en attente</p>
       </div>
+
+      <AdminTabs
+        pendingArticles={pendingArticles}
+        rejectedArticles={rejectedArticles}
+      />
     </div>
   )
 }

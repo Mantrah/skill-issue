@@ -64,7 +64,7 @@
       "imageUrl": "https://4kwallpapers.com/images/wallpapers/call-of-duty-black-ops-7-key-art-2025-games-3840x2160-22670.jpg",
       "localImage": "/images/cod-black-ops-7-ia-six-doigts.jpg",
       "date": "2025-12-29",
-      "status": "approved",
+      "status": "published",
       "createdAt": "2025-12-29T12:00:00Z",
       "fr": {
         "title": "Activision confirme l'usage d'IA pour Call of Duty: Black Ops 7, les mains à six doigts désormais une feature",
@@ -78,7 +78,8 @@
         "sourceUrl": "https://kotaku.com/call-of-duty-black-ops-7-ai-art-activision-statement-blops7-steam-ps5-2000644397",
         "sourceName": "Kotaku"
       },
-      "updatedAt": "2025-12-29T22:11:54.266Z"
+      "updatedAt": "2025-12-29T22:35:30.416Z",
+      "publishedAt": "2025-12-29T22:35:30.416Z"
     }
   ]
 }
