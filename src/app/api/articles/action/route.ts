@@ -3,34 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import { scheduleComments } from '@/lib/comment-scheduler'
 import { createScheduledComments } from '@/lib/comments'
-
-interface ArticleContent {
-  title: string
-  content: string
-}
-
-interface PendingArticle {
-  id: string
-  slug: string
-  tags: string[]
-  imageUrl: string
-  localImage?: string
-  date: string
-  status: 'pending' | 'approved' | 'rejected' | 'published' | 'needs_correction'
-  createdAt: string
-  updatedAt?: string
-  publishedAt?: string
-  fr: ArticleContent
-  en: ArticleContent
-  metadata?: Record<string, unknown>
-  correction?: { prompt: string; requestedAt: string }
-  rejectedReason?: string
-}
-
-interface PendingData {
-  $schema?: string
-  articles: PendingArticle[]
-}
+import type { PendingArticle, PendingData } from '@/types/articles'
 
 const PENDING_FILE = path.join(process.cwd(), 'drafts', 'pending.json')
 

@@ -2,22 +2,8 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { categoryConfig, type Category } from '@/lib/categories'
-
-interface PendingArticle {
-  id: string
-  slug: string
-  tags: Category[]
-  imageUrl: string
-  localImage?: string
-  date: string
-  status: 'pending' | 'approved' | 'rejected' | 'published' | 'needs_correction'
-  createdAt: string
-  fr: { title: string; content: string }
-  en: { title: string; content: string }
-  metadata?: { sourceUrl?: string; sourceName?: string }
-  correction?: { prompt: string; requestedAt: string }
-}
+import { categoryConfig } from '@/lib/categories'
+import type { PendingArticle } from '@/types/articles'
 
 function StatusBadge({ status }: { status: string }) {
   const config: Record<string, { bg: string; text: string; label: string }> = {

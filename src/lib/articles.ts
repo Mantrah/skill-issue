@@ -3,6 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { type Category, allCategories } from './categories'
 import { type Locale, defaultLocale } from './i18n'
+import type { PendingArticle, PendingData } from '@/types/articles'
 
 export { type Category, categoryConfig, allCategories } from './categories'
 export { type Locale, defaultLocale } from './i18n'
@@ -16,24 +17,6 @@ export interface Article {
   category: Category // Premier tag (rétrocompatibilité)
   image?: string
   date: string
-}
-
-// Interface pour les articles dans pending.json
-interface PendingArticle {
-  id: string
-  slug: string
-  tags: string[]
-  imageUrl: string
-  localImage?: string
-  date: string
-  status: 'pending' | 'approved' | 'published' | 'rejected' | 'needs_correction'
-  publishedAt?: string
-  fr: { title: string; content: string }
-  en: { title: string; content: string }
-}
-
-interface PendingData {
-  articles: PendingArticle[]
 }
 
 const pendingFilePath = path.join(process.cwd(), 'drafts', 'pending.json')

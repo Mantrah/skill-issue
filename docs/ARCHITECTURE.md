@@ -4,7 +4,7 @@
 
 | Composant | Choix | Raison |
 |-----------|-------|--------|
-| Frontend | Next.js 14 (App Router) | SSR/SSG, SEO, écosystème riche |
+| Frontend | Next.js 15 (App Router) | SSR/SSG, SEO, écosystème riche |
 | Styling | Tailwind CSS | Rapide, flexible |
 | Database | Supabase (PostgreSQL) | Gratuit, Auth OAuth intégré |
 | Hébergement | Vercel | Gratuit, intégration Next.js parfaite |
@@ -216,6 +216,54 @@ background: `radial-gradient(... ${color} 0%, var(--background) 70%)`
 
 **Note future** : L'effet actuel est un gradient centré. Une itération future pourrait implémenter un "vrai ambilight" avec émission depuis les bords de l'écran.
 
+### Architecture des layers de background
+
+Le projet utilise plusieurs couches superposées pour les effets visuels. Comprendre cette hiérarchie est crucial pour éviter que des backgrounds soient masqués.
+
+**Hiérarchie des layers (du plus bas au plus haut)** :
+
+```
+┌─────────────────────────────────────────┐
+│ 1. body (globals.css)                   │ <- Couche la plus basse
+│    - Gradient rouge gauche (fallback)   │
+│    - var(--card) background             │
+└─────────────────────────────────────────┘
+              ▲ Masqué par ▼
+┌─────────────────────────────────────────┐
+│ 2. main (layout.tsx)                    │
+│    - background: transparent            │ <- Laisse passer le body
+│    - z-index implicite (stacking ctx)   │
+└─────────────────────────────────────────┘
+              ▲ Masqué par ▼
+┌─────────────────────────────────────────┐
+│ 3. Page Client div (HomePageClient,     │ <- Couche la plus haute
+│    ArticlePageClient)                   │
+│    - ambientStyle (gradient dynamique)  │
+│    - Gradient rouge gauche (inclus)     │
+│    - Couvre tout le viewport            │
+└─────────────────────────────────────────┘
+```
+
+**Règles d'implémentation** :
+
+| Couche | Usage | Règle |
+|--------|-------|-------|
+| `body` | Effets statiques globaux | Gradient rouge + fond par défaut |
+| `main` | Conteneur transparent | JAMAIS de background opaque |
+| Page Client | Effets dynamiques | DOIT inclure les gradients statiques |
+
+**Workflow d'ajout d'effet de background** :
+
+1. **Effet statique global** → Ajouter dans `body` (globals.css) ET dans `redGradient` (useAmbientColor.ts)
+2. **Effet dynamique contextuel** → Modifier `ambientStyle` dans `useAmbientColor.ts`
+
+**Pièges à éviter** :
+
+- `::before`/`::after` sur Footer/Main → masqué par z-index du contenu
+- Background sur `main` → écrase définitivement le `body`
+- Oublier le gradient dans `ambientStyle` → disparaît quand l'Ambilight charge
+- `transparent` dans un gradient → banding (utiliser `rgba(r,g,b,0)`)
+
 ### Layout Homepage (style Kotaku)
 Structure responsive inspirée des sites gaming :
 - **Featured article** : Grande carte avec GamepadDecorations
@@ -246,13 +294,11 @@ Structure responsive inspirée des sites gaming :
 ```json
 {
   "dependencies": {
-    "next": "^14.0.0",
-    "@supabase/supabase-js": "^2.0.0",
-    "@supabase/ssr": "^0.1.0",
-    "next-intl": "^3.0.0",
-    "tailwindcss": "^3.4.0",
-    "react-markdown": "^9.0.0",
-    "date-fns": "^3.0.0"
+    "next": "^15.5.9",
+    "react": "^19.2.3",
+    "tailwindcss": "^4",
+    "react-markdown": "^10.1.0",
+    "gray-matter": "^4.0.3"
   }
 }
 ```

@@ -1,27 +1,7 @@
 import fs from 'fs'
 import path from 'path'
-import { type Category } from '@/lib/categories'
+import type { PendingArticle, PendingData } from '@/types/articles'
 import AdminTabs from './AdminTabs'
-
-interface PendingArticle {
-  id: string
-  slug: string
-  tags: Category[]
-  imageUrl: string
-  localImage?: string
-  date: string
-  status: 'pending' | 'approved' | 'rejected' | 'published' | 'needs_correction'
-  createdAt: string
-  updatedAt?: string
-  fr: { title: string; content: string }
-  en: { title: string; content: string }
-  metadata?: { sourceUrl?: string; sourceName?: string }
-  correction?: { prompt: string; requestedAt: string }
-}
-
-interface PendingData {
-  articles: PendingArticle[]
-}
 
 function getPendingArticles(): PendingArticle[] {
   const filePath = path.join(process.cwd(), 'drafts', 'pending.json')

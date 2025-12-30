@@ -2,22 +2,7 @@
 
 import { useState } from 'react'
 import AdminArticleCard from './AdminArticleCard'
-import { type Category } from '@/lib/categories'
-
-interface PendingArticle {
-  id: string
-  slug: string
-  tags: Category[]
-  imageUrl: string
-  localImage?: string
-  date: string
-  status: 'pending' | 'approved' | 'rejected' | 'published' | 'needs_correction'
-  createdAt: string
-  fr: { title: string; content: string }
-  en: { title: string; content: string }
-  metadata?: { sourceUrl?: string; sourceName?: string }
-  correction?: { prompt: string; requestedAt: string }
-}
+import type { PendingArticle } from '@/types/articles'
 
 interface AdminTabsProps {
   pendingArticles: PendingArticle[]
